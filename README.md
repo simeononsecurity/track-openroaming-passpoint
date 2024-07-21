@@ -18,10 +18,16 @@ A collection of scripts and tools that tracks the availability of Hotspot 2.0, P
 
 <!-- STATS END -->
 
+### OpenRoaming and Hotspot 2.0 Table Mapped
+
+![OpenRoaming and Hotspot 2.0 Table Map](https://github.com/simeononsecurity/track-openroaming-passpoint/blob/main/output/global_wifi_map.png)
+
+
 ## Table of Contents
 
 - [Track OpenRoaming Passpoint](#track-openroaming-passpoint)
     - [OpenRoaming and Hotspot 2.0 Stats Table](#openroaming-and-hotspot-20-stats-table)
+    - [OpenRoaming and Hotspot 2.0 Table Mapped](#openroaming-and-hotspot-20-table-mapped)
   - [Table of Contents](#table-of-contents)
   - [Introduction](#introduction)
   - [Installation](#installation)
