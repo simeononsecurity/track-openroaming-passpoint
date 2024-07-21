@@ -30,9 +30,6 @@ jobs:
           API_TOKEN: ${{ secrets.API_TOKEN }}
           AUTH_HEADER: ${{ secrets.AUTH_HEADER }}
 
-      - name: Run filter_sort_wigle_results.py
-        run: python scripts/filter_sort_wigle_results.py
-
       - name: Run generate_map_html.py
         run: python scripts/generate_map_html.py
 
