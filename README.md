@@ -8,13 +8,13 @@ A collection of scripts and tools that tracks the availability of Hotspot 2.0, P
 
 | Statistic | Count | Description |
 |-----------|-------|-------------|
-| Total Hotspot 2.0 APs | 14153 | Total count of all Hotspot 2.0 access points |
-| OpenRoaming Unsettled | 3064 | Count of devices with RCOI containing '5a03ba' |
-| OpenRoaming Settled | 42 | Count of devices with RCOI containing 'baa2d' but not '5a03ba' |
-| Google Orion Devices | 7694 | Count of devices with RCOI containing 'f4f5e8f5f4' |
-| XNET Devices | 137 | Count of devices with SSID containing 'XNET' |
-| Helium Devices | 5 | Count of devices with SSID containing 'HELIUM' |
-| Other Devices | 3211 | Count of devices that do not match any of the above categories |
+| Total Hotspot 2.0 APs | 1000 | Total count of all Hotspot 2.0 access points |
+| OpenRoaming Unsettled | 3 | Count of devices with RCOI containing '5a03ba' |
+| OpenRoaming Settled | 3 | Count of devices with RCOI containing 'baa2d' but not '5a03ba' |
+| Google Orion Devices | 195 | Count of devices with RCOI containing 'f4f5e8f5f4' |
+| XNET Devices | 3 | Count of devices with SSID containing 'XNET' |
+| Helium Devices | 0 | Count of devices with SSID containing 'HELIUM' |
+| Other Devices | 796 | Count of devices that do not match any of the above categories |
 
 <!-- STATS END -->
 
