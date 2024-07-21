@@ -24,7 +24,7 @@ df = pd.read_csv(csv_file)
 df['ssid'] = df['ssid'].astype(str).fillna('')
 
 # SSID heuristics
-residential_ssids = ["Home", "NETGEAR", "Linksys", "ATT", "Comcast"]
+residential_ssids = ["Home", "NETGEAR", "Linksys", "ATT", "Comcast", "Xfinity"]
 business_ssids = ["Guest", "Office", "Corp", "WiFi", "Business", "Cafe", "Store", "Shop"]
 public_ssids = ["FreeWiFi", "Public", "Library", "Airport", "Hotel", "City"]
 
