@@ -8,9 +8,9 @@ from datetime import datetime
 current_path = os.getcwd()
 
 # Define the folder paths
-scripts_path = os.path.join(current_path, 'Scripts')
-data_path = os.path.join(current_path, 'Data')
-output_path = os.path.join(current_path, 'Output')
+scripts_path = os.path.join(current_path, 'scripts')
+data_path = os.path.join(current_path, 'data')
+output_path = os.path.join(current_path, 'output')
 archive_path = os.path.join(output_path, 'archive')
 
 # Ensure the archive directory exists

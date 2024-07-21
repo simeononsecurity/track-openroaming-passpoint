@@ -4,7 +4,6 @@ import json
 import time
 import os
 from dotenv import load_dotenv
-from datetime import datetime, timedelta
 
 # Load environment variables from .env file
 load_dotenv()
@@ -26,14 +25,14 @@ params = {
     "freenet": "false",
     "paynet": "false",
     "rcoisMinimum": "999999",
-    "country": "US",
+    #"country": "US",
     "resultsPerPage": "1000"
 }
 
 # Define the folder paths
 current_path = os.getcwd()
-data_path = os.path.join(current_path, 'Data')
-output_path = os.path.join(current_path, 'Output')
+data_path = os.path.join(current_path, 'data')
+output_path = os.path.join(current_path, 'output')
 
 # Ensure directories exist
 os.makedirs(data_path, exist_ok=True)
@@ -73,10 +72,9 @@ def append_to_csv(data, csv_file):
             writer.writerow(data[0].keys())
         for row in data:
             writer.writerow(row.values())
+    print(f"Appended {len(data)} results to {csv_file}")
 
-# Record the start time
-start_time = datetime.now()
-max_duration = timedelta(minutes=5)
+error_count = 0
 
 while True:
     try:
@@ -86,7 +84,10 @@ while True:
         # Extract results
         results = data.get("results", [])
         if not results:
+            print("No more results. Exiting.")
             break
+
+        print(f"Fetched {len(results)} results")
 
         # Append results to CSV
         append_to_csv(results, csv_file)
@@ -94,6 +95,7 @@ while True:
         # Get the next "searchAfter" value
         search_after = data.get("searchAfter")
         if not search_after:
+            print("No searchAfter value found. Exiting.")
             break
 
         # Save the last "searchAfter" value
@@ -102,26 +104,30 @@ while True:
         # Update the params for the next request
         params["searchAfter"] = search_after
 
-        # Check if the maximum duration has been reached
-        if datetime.now() - start_time > max_duration:
-            print("Maximum duration reached. Exiting after this loop.")
-            break
+        # Reset error count after a successful loop
+        error_count = 0
 
         # To avoid hitting rate limits or being blocked
         time.sleep(30)  # Adjust the sleep time as necessary
 
     except requests.exceptions.RequestException as e:
         print(f"Request failed: {e}")
-        
+
         if e.response.status_code == 429:  # Too Many Requests
             retry_after = int(e.response.headers.get("Retry-After", 600))  # Default to 60 seconds if not provided
             print(f"Rate limit exceeded. Retrying after {retry_after} seconds.")
             time.sleep(retry_after)
         else:
-            break  # For other errors, stop the loop
+            error_count += 1  # Increment error count for other errors
+            if error_count > 1:
+                print("Too many errors. Stopping the loop.")
+                break  # Stop the loop after more than one error
 
     except Exception as e:
         print(f"An error occurred: {e}")
-        break  # Stop the loop on other exceptions
+        error_count += 1  # Increment error count for other exceptions
+        if error_count > 1:
+            print("Too many errors. Stopping the loop.")
+            break  # Stop the loop after more than one error
 
 print(f'Data has been saved to {csv_file}')
