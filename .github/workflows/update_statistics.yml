@@ -42,11 +42,6 @@ jobs:
       - name: Run update_readme_stats.py
         run: python scripts/update_readme_stats.py
 
-      - name: Copy HTML files to docs folder
-        run: |
-          mkdir -p docs
-          cp output/*.html docs/
-
       - name: Commit and push changes
         run: |
           git config user.name "${{ secrets.USERNAME }}"
