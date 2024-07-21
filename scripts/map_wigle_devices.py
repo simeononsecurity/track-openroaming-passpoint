@@ -26,7 +26,7 @@ params = {
     "freenet": "false",
     "paynet": "false",
     "rcoisMinimum": "999999",
-    "country": "US",
+    #"country": "US",
     "resultsPerPage": "1000"
 }
 
