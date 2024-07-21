@@ -24,28 +24,28 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run map_wigle_devices.py
-        run: python Scripts/map_wigle_devices.py
+        run: python scripts/map_wigle_devices.py
         env:
           API_NAME: ${{ secrets.API_NAME }}
           API_TOKEN: ${{ secrets.API_TOKEN }}
           AUTH_HEADER: ${{ secrets.AUTH_HEADER }}
 
-      - name: Run filter_wigle_results.py
-        run: python Scripts/filter_wigle_results.py
+      - name: Run filter_sort_wigle_results.py
+        run: python scripts/filter_sort_wigle_results.py
 
-      - name: Run create_folium_map.py
-        run: python Scripts/create_folium_map.py
+      - name: Run generate_map_html.py
+        run: python scripts/generate_map_html.py
 
-      - name: Run plot_wifi_map.py
-        run: python Scripts/plot_wifi_map.py
+      - name: Run generate_map_png.py
+        run: python scripts/generate_map_png.py
 
       - name: Run update_readme_stats.py
-        run: python Scripts/update_readme_stats.py
+        run: python scripts/update_readme_stats.py
 
       - name: Copy HTML files to docs folder
         run: |
           mkdir -p docs
-          cp Output/*.html docs/
+          cp output/*.html docs/
 
       - name: Commit and push changes
         run: |
