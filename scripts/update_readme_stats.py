@@ -3,7 +3,7 @@ import pandas as pd
 
 # Define the folder paths
 current_path = os.getcwd()
-data_path = os.path.join(current_path, 'Data')
+data_path = os.path.join(current_path, 'data')
 readme_path = os.path.join(current_path, 'README.md')
 
 # Define the path to the CSV file in the Data folder
@@ -19,10 +19,11 @@ openroaming_settled = df['rcois'].str.contains('baa2d', na=False) & ~df['rcois']
 openroaming_settled = openroaming_settled.sum()
 google_orion_devices = df['rcois'].str.contains('f4f5e8f5f4', na=False).sum()
 xnet_devices = df['ssid'].str.contains('XNET', na=False).sum()
+helium_devices = df['ssid'].str.contains('Helium', na=False).sum()
 
 # Calculate count of devices that don't match any of the previous rules
 other_devices = total_hotspots - (
-    openroaming_unsettled + openroaming_settled + google_orion_devices + xnet_devices
+    openroaming_unsettled + openroaming_settled + google_orion_devices + xnet_devices + helium_devices
 )
 
 # Create markdown table with descriptions
@@ -34,6 +35,7 @@ stats_table = f"""
 | OpenRoaming Settled | {openroaming_settled} | Count of devices with RCOI containing 'baa2d' but not '5a03ba' |
 | Google Orion Devices | {google_orion_devices} | Count of devices with RCOI containing 'f4f5e8f5f4' |
 | XNET Devices | {xnet_devices} | Count of devices with SSID containing 'XNET' |
+| Helium Devices | {helium_devices} | Count of devices with SSID containing 'HELIUM' |
 | Other Devices | {other_devices} | Count of devices that do not match any of the above categories |
 """
 
