@@ -26,6 +26,9 @@ other_devices = total_hotspots - (
     openroaming_unsettled + openroaming_settled + google_orion_devices + xnet_devices + helium_devices
 )
 
+# Calculate most common SSIDs
+common_ssids = df['ssid'].value_counts().head(10)
+
 # Create markdown table with descriptions
 stats_table = f"""
 | Statistic | Count | Description |
@@ -39,6 +42,15 @@ stats_table = f"""
 | Other Devices | {other_devices} | Count of devices that do not match any of the above categories |
 """
 
+# Create markdown table for most common SSIDs
+ssids_table = """
+### Most Common RCOI Enabled SSIDs
+| SSID | Count |
+|------|-------|
+"""
+for ssid, count in common_ssids.items():
+    ssids_table += f"| {ssid} | {count} |\n"
+
 # Read the README file
 with open(readme_path, 'r') as f:
     readme_content = f.read()
@@ -46,7 +58,7 @@ with open(readme_path, 'r') as f:
 # Ensure the markers are present in the README
 if '<!-- STATS START -->' in readme_content and '<!-- STATS END -->' in readme_content:
     before_stats, after_stats = readme_content.split('<!-- STATS START -->')[0], readme_content.split('<!-- STATS END -->')[1]
-    new_readme_content = before_stats + '<!-- STATS START -->\n' + stats_table + '\n<!-- STATS END -->' + after_stats
+    new_readme_content = before_stats + '<!-- STATS START -->\n' + stats_table + '\n' + ssids_table + '\n<!-- STATS END -->' + after_stats
 
     # Write the new content back to the README file
     with open(readme_path, 'w') as f:
