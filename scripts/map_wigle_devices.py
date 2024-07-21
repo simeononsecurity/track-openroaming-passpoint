@@ -77,8 +77,9 @@ def append_to_csv(data, csv_file):
 
 error_count = 0
 start_time = datetime.now()
+successfully_finished = False
 
-while True:
+while error_count <= 1 and not successfully_finished:
     try:
         # Check if 20 minutes have passed since the start time
         if datetime.now() - start_time > timedelta(minutes=20):
@@ -92,6 +93,7 @@ while True:
         results = data.get("results", [])
         if not results:
             print("No more results. Exiting.")
+            successfully_finished = True
             break
 
         print(f"Fetched {len(results)} results")
@@ -103,6 +105,7 @@ while True:
         search_after = data.get("searchAfter")
         if not search_after:
             print("No searchAfter value found. Exiting.")
+            successfully_finished = True
             break
 
         # Save the last "searchAfter" value
@@ -120,17 +123,17 @@ while True:
     except requests.exceptions.RequestException as e:
         print(f"Request failed: {e}")
 
-        if e.response.status_code == 429:  # Too Many Requests
+        if error_count > 1:
+            print("Too many errors. Stopping the loop.")
+            break  # Stop the loop after more than one error
+
+        if e.response and e.response.status_code == 429:  # Too Many Requests
             retry_after = int(e.response.headers.get("Retry-After", 60))  # Default to 60 seconds if not provided
             print(f"Rate limit exceeded. Retrying after {retry_after} seconds.")
             time.sleep(retry_after)
             error_count += 1  # Increment error count for rate limit errors
         else:
             error_count += 1  # Increment error count for other errors
-
-        if error_count > 1:
-            print("Too many errors. Stopping the loop.")
-            break  # Stop the loop after more than one error
 
     except Exception as e:
         print(f"An error occurred: {e}")
