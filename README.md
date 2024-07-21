@@ -37,7 +37,6 @@ A collection of scripts and tools that tracks the availability of Hotspot 2.0, P
   - [GitHub Pages](#github-pages)
   - [Contributing](#contributing)
   - [License](#license)
-    - [Explanation](#explanation)
 
 ## Introduction
 
@@ -146,13 +145,3 @@ Contributions are welcome! Please open an issue or submit a pull request.
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-```
-
-### Explanation
-
-- The README now includes a detailed structure reflecting the new files and their purposes.
-- The `Usage` section provides instructions on running each script.
-- The `Automated Workflow` section describes the GitHub Actions workflow.
-- The `GitHub Pages` section mentions the availability of HTML maps through GitHub Pages.
-
-This README should provide a comprehensive guide to setting up, running, and understanding the project.
