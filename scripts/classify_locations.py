@@ -7,15 +7,13 @@ from tqdm import tqdm
 # Define the folder paths
 current_path = os.getcwd()
 data_path = os.path.join(current_path, 'data')
-output_path = os.path.join(current_path, 'output')
 
 # Ensure directories exist
 os.makedirs(data_path, exist_ok=True)
-os.makedirs(output_path, exist_ok=True)
 
 # Define the path to the CSV file in the Data folder
 csv_file = os.path.join(data_path, 'wigle_results.csv')
-output_file = os.path.join(output_path, 'classified_wigle_results.csv')
+output_file = os.path.join(data_path, 'classified_wigle_results.csv')
 
 # Read the CSV file into a DataFrame
 df = pd.read_csv(csv_file)
@@ -61,8 +59,11 @@ address_components = ['road', 'suburb', 'city', 'town', 'village', 'county', 'st
 for component in address_components:
     df[component] = ""
 
+# Get the current line count in the CSV file
+existing_line_count = len(df)
+
 # Perform reverse geocoding and fill address components
-for idx, row in tqdm(df.iterrows(), total=df.shape[0], desc="Reverse Geocoding"):
+for idx, row in tqdm(df.iloc[existing_line_count:].iterrows(), total=len(df) - existing_line_count, desc="Reverse Geocoding"):
     if row['location_type'] == "Unknown":
         address = reverse_geocode(row['trilat'], row['trilong'])
         for component in address_components:
