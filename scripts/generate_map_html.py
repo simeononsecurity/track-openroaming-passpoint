@@ -11,7 +11,9 @@ current_path = os.getcwd()
 scripts_path = os.path.join(current_path, 'Scripts')
 data_path = os.path.join(current_path, 'Data')
 output_path = os.path.join(current_path, 'Output')
+docs_path = os.path.join(current_path, 'Docs')
 archive_path = os.path.join(output_path, 'archive')
+
 
 # Ensure the archive directory exists
 os.makedirs(archive_path, exist_ok=True)
@@ -103,9 +105,11 @@ m.get_root().html.add_child(folium.Element(custom_script))
 
 # Save the map to an HTML file in the Output folder
 map_file_path = os.path.join(output_path, 'wigle_map.html')
+docs_index_path = os.path.join(docs_path, 'index.html')
 archive_file_path = os.path.join(archive_path, f'wigle_map_{current_year}.html')
 
 m.save(map_file_path)
+m.save(docs_index_path)
 m.save(archive_file_path)
 
 print(f"Map has been saved to {map_file_path} and archived to {archive_file_path}")
