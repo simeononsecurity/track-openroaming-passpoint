@@ -13,7 +13,9 @@ A collection of scripts and tools that tracks the availability of Hotspot 2.0, P
 | OpenRoaming Settled | 42 | Count of devices with RCOI containing 'baa2d' but not '5a03ba' |
 | Google Orion Devices | 7694 | Count of devices with RCOI containing 'f4f5e8f5f4' |
 | XNET Devices | 137 | Count of devices with SSID containing 'XNET' |
-| Helium Devices | 5 | Count of devices with SSID containing 'HELIUM' |
+| Helium Devices | 5 | Count of devices with SSID containing 'Helium Mobile' |
+| Wayru Devices | 0 | Count of devices with SSID containing 'Wayru' |
+| MetaBlox Devices | 1 | Count of devices with SSID containing 'MetaBlox' |
 | Other Devices | 3211 | Count of devices that do not match any of the above categories |
 | Residential Locations | 912 | Count of SSIDs classified as Residential |
 | Business Locations | 785 | Count of SSIDs classified as Business |
