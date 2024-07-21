@@ -108,7 +108,7 @@ while True:
         error_count = 0
 
         # To avoid hitting rate limits or being blocked
-        time.sleep(30)  # Adjust the sleep time as necessary
+        time.sleep(5)  # Adjust the sleep time as necessary
 
     except requests.exceptions.RequestException as e:
         print(f"Request failed: {e}")
