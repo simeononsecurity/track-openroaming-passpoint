@@ -1,0 +1,58 @@
+name: Run Scripts and Update README
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # Runs every 24 hours
+  workflow_dispatch:  # Allows manual triggering of the workflow
+
+jobs:
+  run-scripts:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run map_wigle_devices.py
+        run: python Scripts/map_wigle_devices.py
+        env:
+          API_NAME: ${{ secrets.API_NAME }}
+          API_TOKEN: ${{ secrets.API_TOKEN }}
+          AUTH_HEADER: ${{ secrets.AUTH_HEADER }}
+
+      - name: Run filter_wigle_results.py
+        run: python Scripts/filter_wigle_results.py
+
+      - name: Run create_folium_map.py
+        run: python Scripts/create_folium_map.py
+
+      - name: Run plot_wifi_map.py
+        run: python Scripts/plot_wifi_map.py
+
+      - name: Run update_readme_stats.py
+        run: python Scripts/update_readme_stats.py
+
+      - name: Copy HTML files to docs folder
+        run: |
+          mkdir -p docs
+          cp Output/*.html docs/
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "${{ secrets.USERNAME }}"
+          git config user.email "${{ secrets.EMAIL }}"
+          git add -A
+          git commit -m "Update Statistics and HTML files"
+          git push --force --quiet origin HEAD:refs/heads/main
+        env:
+          PERSONAL_ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
