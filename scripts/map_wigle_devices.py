@@ -4,6 +4,7 @@ import json
 import time
 import os
 from dotenv import load_dotenv
+from datetime import datetime, timedelta
 
 # Load environment variables from .env file
 load_dotenv()
@@ -25,8 +26,8 @@ params = {
     "freenet": "false",
     "paynet": "false",
     "rcoisMinimum": "999999",
-    #"country": "US",
-    "resultsPerPage": "100"
+    "country": "US",
+    "resultsPerPage": "1000"
 }
 
 # Define the folder paths
@@ -75,6 +76,7 @@ def append_to_csv(data, csv_file):
     print(f"Appended {len(data)} results to {csv_file}")
 
 error_count = 0
+start_time = datetime.now()
 
 while True:
     try:
@@ -103,6 +105,11 @@ while True:
 
         # Update the params for the next request
         params["searchAfter"] = search_after
+
+        # Check if 20 minutes have passed since the start time
+        if datetime.now() - start_time > timedelta(minutes=20):
+            print("20 minutes have elapsed without error. Exiting.")
+            break
 
         # Reset error count after a successful loop
         error_count = 0
