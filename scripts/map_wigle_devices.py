@@ -4,6 +4,7 @@ import json
 import time
 import os
 from dotenv import load_dotenv
+from datetime import datetime, timedelta
 
 # Load environment variables from .env file
 load_dotenv()
@@ -73,6 +74,10 @@ def append_to_csv(data, csv_file):
         for row in data:
             writer.writerow(row.values())
 
+# Record the start time
+start_time = datetime.now()
+max_duration = timedelta(minutes=5)
+
 while True:
     try:
         # Fetch data
@@ -96,6 +101,11 @@ while True:
 
         # Update the params for the next request
         params["searchAfter"] = search_after
+
+        # Check if the maximum duration has been reached
+        if datetime.now() - start_time > max_duration:
+            print("Maximum duration reached. Exiting after this loop.")
+            break
 
         # To avoid hitting rate limits or being blocked
         time.sleep(30)  # Adjust the sleep time as necessary
