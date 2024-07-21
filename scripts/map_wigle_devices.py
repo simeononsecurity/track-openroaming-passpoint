@@ -26,7 +26,7 @@ params = {
     "paynet": "false",
     "rcoisMinimum": "999999",
     #"country": "US",
-    "resultsPerPage": "1000"
+    "resultsPerPage": "100"
 }
 
 # Define the folder paths
@@ -114,9 +114,10 @@ while True:
         print(f"Request failed: {e}")
 
         if e.response.status_code == 429:  # Too Many Requests
-            retry_after = int(e.response.headers.get("Retry-After", 600))  # Default to 60 seconds if not provided
+            retry_after = int(e.response.headers.get("Retry-After", 60))  # Default to 60 seconds if not provided
             print(f"Rate limit exceeded. Retrying after {retry_after} seconds.")
             time.sleep(retry_after)
+            error_count += 1  # Increment error count for rate limit errors
         else:
             error_count += 1  # Increment error count for other errors
             if error_count > 1:
