@@ -40,6 +40,7 @@ unknown_count = location_type_counts.get("Unknown", 0)
 
 # Create markdown table with descriptions
 stats_table = f"""
+### OpenRoaming and Hotspot 2.0 Stats Table
 | Statistic | Count | Description |
 |-----------|-------|-------------|
 | Total Hotspot 2.0 APs | {total_hotspots} | Total count of all Hotspot 2.0 access points |

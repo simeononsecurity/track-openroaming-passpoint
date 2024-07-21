@@ -2,9 +2,13 @@
 
 A collection of scripts and tools that tracks the availability of Hotspot 2.0, Passpoint, and OpenRoaming networks in the wild.
 
-### OpenRoaming and Hotspot 2.0 Stats Table
+Pulls from the Wigle.net dataset. 
+
+> **Note**: Information here may not be entirely accurate, but it's the best semi-public dataset available for tracking this kind of information. 
 
 <!-- STATS START -->
+
+### OpenRoaming and Hotspot 2.0 Stats Table
 
 | Statistic | Count | Description |
 |-----------|-------|-------------|
