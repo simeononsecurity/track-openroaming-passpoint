@@ -8,13 +8,28 @@ A collection of scripts and tools that tracks the availability of Hotspot 2.0, P
 
 | Statistic | Count | Description |
 |-----------|-------|-------------|
-| Total Hotspot 2.0 APs | 1000 | Total count of all Hotspot 2.0 access points |
-| OpenRoaming Unsettled | 3 | Count of devices with RCOI containing '5a03ba' |
-| OpenRoaming Settled | 3 | Count of devices with RCOI containing 'baa2d' but not '5a03ba' |
-| Google Orion Devices | 195 | Count of devices with RCOI containing 'f4f5e8f5f4' |
-| XNET Devices | 3 | Count of devices with SSID containing 'XNET' |
+| Total Hotspot 2.0 APs | 2100 | Total count of all Hotspot 2.0 access points |
+| OpenRoaming Unsettled | 176 | Count of devices with RCOI containing '5a03ba' |
+| OpenRoaming Settled | 5 | Count of devices with RCOI containing 'baa2d' but not '5a03ba' |
+| Google Orion Devices | 1122 | Count of devices with RCOI containing 'f4f5e8f5f4' |
+| XNET Devices | 5 | Count of devices with SSID containing 'XNET' |
 | Helium Devices | 0 | Count of devices with SSID containing 'HELIUM' |
-| Other Devices | 796 | Count of devices that do not match any of the above categories |
+| Other Devices | 792 | Count of devices that do not match any of the above categories |
+
+
+### Most Common RCOI Enabled SSIDs
+| SSID | Count |
+|------|-------|
+| LiveBetter | 529 |
+| adco | 320 |
+| .p | 261 |
+| BoldynPasspoint | 243 |
+| _Westfield CO | 234 |
+| Passpoint WiFi | 125 |
+| Adentro OpenRoaming | 115 |
+| External | 56 |
+| Passpoint | 53 |
+| OpenRoaming@CLUS | 46 |
 
 <!-- STATS END -->
 
