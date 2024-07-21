@@ -48,4 +48,3 @@ filtered_csv_path = os.path.join(data_path, 'wigle_results_filtered.csv')
 filtered_df.to_csv(filtered_csv_path, index=False)
 
 print(f"Filtered data saved to {filtered_csv_path}")
-s
