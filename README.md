@@ -8,28 +8,32 @@ A collection of scripts and tools that tracks the availability of Hotspot 2.0, P
 
 | Statistic | Count | Description |
 |-----------|-------|-------------|
-| Total Hotspot 2.0 APs | 2100 | Total count of all Hotspot 2.0 access points |
-| OpenRoaming Unsettled | 176 | Count of devices with RCOI containing '5a03ba' |
-| OpenRoaming Settled | 5 | Count of devices with RCOI containing 'baa2d' but not '5a03ba' |
-| Google Orion Devices | 1122 | Count of devices with RCOI containing 'f4f5e8f5f4' |
-| XNET Devices | 5 | Count of devices with SSID containing 'XNET' |
-| Helium Devices | 0 | Count of devices with SSID containing 'HELIUM' |
-| Other Devices | 792 | Count of devices that do not match any of the above categories |
+| Total Hotspot 2.0 APs | 14153 | Total count of all Hotspot 2.0 access points |
+| OpenRoaming Unsettled | 3064 | Count of devices with RCOI containing '5a03ba' |
+| OpenRoaming Settled | 42 | Count of devices with RCOI containing 'baa2d' but not '5a03ba' |
+| Google Orion Devices | 7694 | Count of devices with RCOI containing 'f4f5e8f5f4' |
+| XNET Devices | 137 | Count of devices with SSID containing 'XNET' |
+| Helium Devices | 5 | Count of devices with SSID containing 'HELIUM' |
+| Other Devices | 3211 | Count of devices that do not match any of the above categories |
+| Residential Locations | 912 | Count of SSIDs classified as Residential |
+| Business Locations | 785 | Count of SSIDs classified as Business |
+| Public Locations | 0 | Count of SSIDs classified as Public |
+| Unknown Locations | 12456 | Count of SSIDs classified as Unknown |
 
 
 ### Most Common RCOI Enabled SSIDs
 | SSID | Count |
 |------|-------|
-| LiveBetter | 529 |
-| adco | 320 |
-| .p | 261 |
-| BoldynPasspoint | 243 |
-| _Westfield CO | 234 |
-| Passpoint WiFi | 125 |
-| Adentro OpenRoaming | 115 |
-| External | 56 |
-| Passpoint | 53 |
-| OpenRoaming@CLUS | 46 |
+| BoldynPasspoint | 3125 |
+| Cellular Wi-Fi Passthrough | 1627 |
+| LiveBetter | 1142 |
+| .p | 1000 |
+| OpenRoaming@CLUS | 837 |
+| Xfinity Mobile | 794 |
+| GPGMS_CarrierOffloading | 786 |
+| adco | 595 |
+| Orion | 587 |
+| Passpoint WiFi | 531 |
 
 <!-- STATS END -->
 
@@ -60,6 +64,7 @@ A collection of scripts and tools that tracks the availability of Hotspot 2.0, P
       - [generate\_map\_html.py](#generate_map_htmlpy)
       - [generate\_map\_png.py](#generate_map_pngpy)
       - [update\_readme\_stats.py](#update_readme_statspy)
+      - [classify\_locations.py](#classify_locationspy)
     - [Running the Scripts](#running-the-scripts)
   - [Automated Workflow](#automated-workflow)
     - [Workflow: `.github/workflows/update_statistics.yml`](#workflow-githubworkflowsupdate_statisticsyml)
@@ -121,6 +126,10 @@ Generates a static PNG map using Matplotlib and Basemap, displaying WiGLE data p
 
 Updates the `README.md` file with statistics about the WiGLE data.
 
+#### classify_locations.py
+
+Classifies SSIDs from the WiGLE data as Residential, Business, or Public based on heuristics and performs reverse geocoding to add location information. The results are saved to a new CSV file.
+
 ### Running the Scripts
 
 1. **Fetch data from WiGLE**:
@@ -146,6 +155,11 @@ Updates the `README.md` file with statistics about the WiGLE data.
 5. **Update the README with statistics**:
    ```sh
    python scripts/update_readme_stats.py
+   ```
+
+6. **Classify SSIDs and perform reverse geocoding**:
+   ```sh
+   python scripts/classify_locations.py
    ```
 
 ## Automated Workflow

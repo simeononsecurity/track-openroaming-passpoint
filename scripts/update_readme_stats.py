@@ -7,7 +7,7 @@ data_path = os.path.join(current_path, 'data')
 readme_path = os.path.join(current_path, 'README.md')
 
 # Define the path to the CSV file in the Data folder
-csv_file = os.path.join(data_path, 'wigle_results.csv')
+csv_file = os.path.join(data_path, 'classified_wigle_results.csv')
 
 # Read the CSV file into a DataFrame
 df = pd.read_csv(csv_file)
@@ -29,6 +29,13 @@ other_devices = total_hotspots - (
 # Calculate most common SSIDs
 common_ssids = df['ssid'].value_counts().head(10)
 
+# Calculate counts of different location types
+location_type_counts = df['location_type'].value_counts().to_dict()
+residential_count = location_type_counts.get("Residential", 0)
+business_count = location_type_counts.get("Business", 0)
+public_count = location_type_counts.get("Public", 0)
+unknown_count = location_type_counts.get("Unknown", 0)
+
 # Create markdown table with descriptions
 stats_table = f"""
 | Statistic | Count | Description |
@@ -40,6 +47,10 @@ stats_table = f"""
 | XNET Devices | {xnet_devices} | Count of devices with SSID containing 'XNET' |
 | Helium Devices | {helium_devices} | Count of devices with SSID containing 'HELIUM' |
 | Other Devices | {other_devices} | Count of devices that do not match any of the above categories |
+| Residential Locations | {residential_count} | Count of SSIDs classified as Residential |
+| Business Locations | {business_count} | Count of SSIDs classified as Business |
+| Public Locations | {public_count} | Count of SSIDs classified as Public |
+| Unknown Locations | {unknown_count} | Count of SSIDs classified as Unknown |
 """
 
 # Create markdown table for most common SSIDs
