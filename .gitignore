@@ -33,5 +33,5 @@ ehthumbs.db
 *.log
 
 # Output files
-*.html
-*.png
+#*.html
+#*.png
