@@ -11,7 +11,7 @@ current_path = os.getcwd()
 scripts_path = os.path.join(current_path, 'Scripts')
 data_path = os.path.join(current_path, 'Data')
 output_path = os.path.join(current_path, 'Output')
-docs_path = os.path.join(current_path, 'Docs')
+docs_path = os.path.join(current_path, 'docs')
 archive_path = os.path.join(output_path, 'archive')
 
 
