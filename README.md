@@ -4,7 +4,9 @@ A collection of scripts and tools that tracks the availability of Hotspot 2.0, P
 
 Pulls from the Wigle.net dataset. 
 
-> **Note**: Information here may not be entirely accurate, but it's the best semi-public dataset available for tracking this kind of information. 
+> **Note**: Information here may not be entirely accurate or complete, but it's the best semi-public dataset available for tracking this kind of information. 
+We've pulled only the US dataset but as this repo updates, it will include the locations from all countries that Wigle supports. 
+The stats are dynamic, we only pull year to date stats. But ultimately we'll update it to do devices mapped in the last 365 days.
 
 <!-- STATS START -->
 
