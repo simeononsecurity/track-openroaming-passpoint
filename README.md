@@ -129,7 +129,6 @@ The project includes a GitHub Actions workflow that runs the scripts automatical
 - Installs the pip requirements.
 - Runs the scripts in order:
   - `map_wigle_devices.py`
-  - `filter_sort_wigle_results.py`
   - `generate_map_html.py`
   - `generate_map_png.py`
   - `update_readme_stats.py`
