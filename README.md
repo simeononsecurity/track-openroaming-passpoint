@@ -38,11 +38,18 @@ A collection of scripts and tools that tracks the availability of Hotspot 2.0, P
 ![OpenRoaming and Hotspot 2.0 Table Map](https://github.com/simeononsecurity/track-openroaming-passpoint/blob/main/output/global_wifi_map.png)
 
 
+### Interactive Map of HotSpot 2.0 Networks
+
+[![Interactive Map](https://img.shields.io/badge/Interactive%20Map-View%20Here-blue)](https://openroamingmap.simeononsecurity.com)
+
+
 ## Table of Contents
 
 - [Track OpenRoaming Passpoint](#track-openroaming-passpoint)
     - [OpenRoaming and Hotspot 2.0 Stats Table](#openroaming-and-hotspot-20-stats-table)
+    - [Most Common RCOI Enabled SSIDs](#most-common-rcoi-enabled-ssids)
     - [OpenRoaming and Hotspot 2.0 Table Mapped](#openroaming-and-hotspot-20-table-mapped)
+    - [Interactive Map of HotSpot 2.0 Networks](#interactive-map-of-hotspot-20-networks)
   - [Table of Contents](#table-of-contents)
   - [Introduction](#introduction)
   - [Installation](#installation)
