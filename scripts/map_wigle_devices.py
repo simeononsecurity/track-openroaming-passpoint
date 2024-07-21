@@ -80,6 +80,11 @@ start_time = datetime.now()
 
 while True:
     try:
+        # Check if 20 minutes have passed since the start time
+        if datetime.now() - start_time > timedelta(minutes=20):
+            print("20 minutes have elapsed. Exiting.")
+            break
+
         # Fetch data
         data = fetch_data(base_url, params, headers)
 
@@ -106,11 +111,6 @@ while True:
         # Update the params for the next request
         params["searchAfter"] = search_after
 
-        # Check if 20 minutes have passed since the start time
-        if datetime.now() - start_time > timedelta(minutes=20):
-            print("20 minutes have elapsed without error. Exiting.")
-            break
-
         # Reset error count after a successful loop
         error_count = 0
 
@@ -127,9 +127,10 @@ while True:
             error_count += 1  # Increment error count for rate limit errors
         else:
             error_count += 1  # Increment error count for other errors
-            if error_count > 1:
-                print("Too many errors. Stopping the loop.")
-                break  # Stop the loop after more than one error
+
+        if error_count > 1:
+            print("Too many errors. Stopping the loop.")
+            break  # Stop the loop after more than one error
 
     except Exception as e:
         print(f"An error occurred: {e}")
