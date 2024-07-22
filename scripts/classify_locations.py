@@ -59,11 +59,8 @@ address_components = ['road', 'suburb', 'city', 'town', 'village', 'county', 'st
 for component in address_components:
     df[component] = ""
 
-# Get the current line count in the CSV file
-existing_line_count = len(df)
-
 # Perform reverse geocoding and fill address components
-for idx, row in tqdm(df.iloc[existing_line_count:].iterrows(), total=len(df) - existing_line_count, desc="Reverse Geocoding"):
+for idx, row in tqdm(df.iterrows(), total=df.shape[0], desc="Reverse Geocoding"):
     if row['location_type'] == "Unknown":
         address = reverse_geocode(row['trilat'], row['trilong'])
         for component in address_components:
