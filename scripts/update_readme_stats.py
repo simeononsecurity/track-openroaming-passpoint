@@ -25,7 +25,7 @@ wayru_devices_match = df['ssid'].str.contains('Wayru', na=False)
 metablox_devices_match = df['ssid'].str.contains('MetaBlox', na=False)
 
 # Boolean series for EDUROAM Devices
-eduroam_rcois_match = df['rcois'].str.contains('5A03BA0800|001BC50460', na=False)
+eduroam_rcois_match = df['rcois'].str.contains('5a03ba0800|001bc50460', na=False)
 eduroam_ssid_match = ~eduroam_rcois_match & df['ssid'].str.contains('eduroam®|eduroam', na=False)
 eduroam_devices_match = eduroam_rcois_match | eduroam_ssid_match
 
