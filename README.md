@@ -11,7 +11,6 @@ The stats are dynamic, we only pull year to date stats. But ultimately we'll upd
 <!-- STATS START -->
 
 ### OpenRoaming and Hotspot 2.0 Stats Table
-
 | Statistic | Count | Description |
 |-----------|-------|-------------|
 | Total Hotspot 2.0 APs | 14153 | Total count of all Hotspot 2.0 access points |
@@ -22,7 +21,7 @@ The stats are dynamic, we only pull year to date stats. But ultimately we'll upd
 | Helium Devices | 5 | Count of devices with SSID containing 'Helium Mobile' |
 | Wayru Devices | 0 | Count of devices with SSID containing 'Wayru' |
 | MetaBlox Devices | 1 | Count of devices with SSID containing 'MetaBlox' |
-| Other Devices | 3211 | Count of devices that do not match any of the above categories |
+| Other Devices | 3210 | Count of devices that do not match any of the above categories |
 | Residential Locations | 912 | Count of SSIDs classified as Residential |
 | Business Locations | 785 | Count of SSIDs classified as Business |
 | Public Locations | 0 | Count of SSIDs classified as Public |
