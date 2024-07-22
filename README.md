@@ -13,35 +13,32 @@ The stats are dynamic, we only pull year to date stats. But ultimately we'll upd
 ### OpenRoaming and Hotspot 2.0 Stats Table
 | Statistic | Count | Description |
 |-----------|-------|-------------|
-| Total Hotspot 2.0 APs | 14153 | Total count of all Hotspot 2.0 access points |
-| OpenRoaming Unsettled | 3064 | Count of devices with RCOI containing '5a03ba' |
-| OpenRoaming Settled | 42 | Count of devices with RCOI containing 'baa2d' but not '5a03ba' |
-| EDUROAM Devices | 0 | Count of devices with RCOI containing either '5a03ba0800' or '001bc50460' or with an SSID Matching "eduroam®" |
-| Google Orion Devices | 7694 | Count of devices with RCOI containing 'f4f5e8f5f4' |
-| XNET Devices | 137 | Count of devices with SSID containing 'XNET' |
-| Helium Devices | 5 | Count of devices with SSID containing 'Helium Mobile' |
+| Total Hotspot 2.0 APs | 9600 | Total count of all Hotspot 2.0 access points |
+| OpenRoaming Unsettled | 2532 | Count of devices with RCOI containing '5a03ba' |
+| OpenRoaming Settled | 18 | Count of devices with RCOI containing 'baa2d' but not '5a03ba' |
+| EDUROAM Devices | 15 | Count of devices with RCOI containing either '5a03ba0800' or '001bc50460' or with an SSID Matching "eduroam®" |
+| Google Orion Devices | 3935 | Count of devices with RCOI containing 'f4f5e8f5f4' |
+| XNET Devices | 9 | Count of devices with SSID containing 'XNET' |
+| Helium Devices | 0 | Count of devices with SSID containing 'Helium Mobile' |
 | Wayru Devices | 0 | Count of devices with SSID containing 'Wayru' |
-| MetaBlox Devices | 1 | Count of devices with SSID containing 'MetaBlox' |
-| Other Devices | 3371 | Count of devices that do not match any of the above categories |
-| Residential Locations | 912 | Count of SSIDs classified as Residential |
-| Business Locations | 785 | Count of SSIDs classified as Business |
-| Public Locations | 0 | Count of SSIDs classified as Public |
-| Unknown Locations | 12456 | Count of SSIDs classified as Unknown |
+| MetaBlox Devices | 0 | Count of devices with SSID containing 'MetaBlox' |
+| CityRoam Devices | 469 | Count of devices with SSID containing 'cityroam' |
+| Other Devices | 3117 | Count of devices that do not match any of the above categories |
 
 
 ### Most Common RCOI Enabled SSIDs
 | SSID | Count |
 |------|-------|
-| BoldynPasspoint | 3125 |
-| Cellular Wi-Fi Passthrough | 1627 |
-| LiveBetter | 1142 |
-| .p | 1000 |
-| OpenRoaming@CLUS | 837 |
-| Xfinity Mobile | 794 |
-| GPGMS_CarrierOffloading | 786 |
-| adco | 595 |
-| Orion | 587 |
-| Passpoint WiFi | 531 |
+| BoldynPasspoint | 1804 |
+| Xfinity Mobile | 993 |
+| LiveBetter | 862 |
+| Passpoint WiFi | 544 |
+| cityroam | 468 |
+| Cellular Wi-Fi Passthrough | 451 |
+| HubOneSecure | 416 |
+| TOKYO_FREE_Wi-Fi | 414 |
+| adco | 321 |
+| OpenRoaming@CLUS | 308 |
 
 <!-- STATS END -->
 
