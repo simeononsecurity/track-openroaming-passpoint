@@ -11,7 +11,6 @@ csv_file = os.path.join(data_path, 'classified_wigle_results.csv')
 
 # Read the CSV file into a DataFrame
 df = pd.read_csv(csv_file)
-
 # Calculate statistics
 total_hotspots = len(df)
 
@@ -29,6 +28,9 @@ eduroam_rcois_match = df['rcois'].str.contains('5a03ba0800|001bc50460', na=False
 eduroam_ssid_match = ~eduroam_rcois_match & df['ssid'].str.contains('eduroam®|eduroam', na=False)
 eduroam_devices_match = eduroam_rcois_match | eduroam_ssid_match
 
+# Boolean series for CityRoam devices
+cityroam_devices_match = df['ssid'].str.contains('cityroam', na=False) & ~matched_devices
+
 # Sum of unique matches
 openroaming_unsettled = openroaming_unsettled_match.sum()
 openroaming_settled = openroaming_settled_match.sum()
@@ -38,6 +40,7 @@ helium_devices = helium_devices_match.sum()
 wayru_devices = wayru_devices_match.sum()
 metablox_devices = metablox_devices_match.sum()
 eduroam_devices = eduroam_devices_match.sum()
+cityroam_devices = cityroam_devices_match.sum()
 
 # Boolean series for devices that have been matched
 matched_devices = (
@@ -48,7 +51,8 @@ matched_devices = (
     helium_devices_match |
     wayru_devices_match |
     metablox_devices_match |
-    eduroam_devices_match
+    eduroam_devices_match |
+    cityroam_devices_match
 )
 
 # Calculate count of devices that don't match any of the previous rules
@@ -64,6 +68,7 @@ print("Helium Devices:", helium_devices)
 print("Wayru Devices:", wayru_devices)
 print("MetaBlox Devices:", metablox_devices)
 print("EDUROAM Devices:", eduroam_devices)
+print("CityRoam Devices:", cityroam_devices)
 print("Other Devices:", other_devices)
 
 # Calculate most common SSIDs
