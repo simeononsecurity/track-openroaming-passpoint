@@ -14,19 +14,57 @@ df = pd.read_csv(csv_file)
 
 # Calculate statistics
 total_hotspots = len(df)
-openroaming_unsettled = df['rcois'].str.contains('5a03ba', na=False).sum()
-openroaming_settled = df['rcois'].str.contains('baa2d', na=False) & ~df['rcois'].str.contains('5a03ba', na=False)
-openroaming_settled = openroaming_settled.sum()
-google_orion_devices = df['rcois'].str.contains('f4f5e8f5f4', na=False).sum()
-xnet_devices = df['ssid'].str.contains('XNET', na=False).sum()
-helium_devices = df['ssid'].str.contains('Helium Mobile', na=False).sum()
-wayru_devices = df['ssid'].str.contains('Wayru', na=False).sum()
-metablox_devices = df['ssid'].str.contains('MetaBlox', na=False).sum()
+
+# Boolean series for each category
+openroaming_unsettled_match = df['rcois'].str.contains('5a03ba', na=False)
+openroaming_settled_match = df['rcois'].str.contains('baa2d', na=False) & ~openroaming_unsettled_match
+google_orion_devices_match = df['rcois'].str.contains('f4f5e8f5f4', na=False)
+xnet_devices_match = df['ssid'].str.contains('XNET', na=False)
+helium_devices_match = df['ssid'].str.contains('Helium Mobile', na=False)
+wayru_devices_match = df['ssid'].str.contains('Wayru', na=False)
+metablox_devices_match = df['ssid'].str.contains('MetaBlox', na=False)
+
+# Boolean series for EDUROAM Devices
+eduroam_rcois_match = df['rcois'].str.contains('5A03BA0800|001BC50460', na=False)
+eduroam_ssid_match = ~eduroam_rcois_match & df['ssid'].str.contains('eduroam®|eduroam', na=False)
+eduroam_devices_match = eduroam_rcois_match | eduroam_ssid_match
+
+# Sum of unique matches
+openroaming_unsettled = openroaming_unsettled_match.sum()
+openroaming_settled = openroaming_settled_match.sum()
+google_orion_devices = google_orion_devices_match.sum()
+xnet_devices = xnet_devices_match.sum()
+helium_devices = helium_devices_match.sum()
+wayru_devices = wayru_devices_match.sum()
+metablox_devices = metablox_devices_match.sum()
+eduroam_devices = eduroam_devices_match.sum()
+
+# Boolean series for devices that have been matched
+matched_devices = (
+    openroaming_unsettled_match |
+    openroaming_settled_match |
+    google_orion_devices_match |
+    xnet_devices_match |
+    helium_devices_match |
+    wayru_devices_match |
+    metablox_devices_match |
+    eduroam_devices_match
+)
 
 # Calculate count of devices that don't match any of the previous rules
-other_devices = total_hotspots - (
-    openroaming_unsettled + openroaming_settled + google_orion_devices + xnet_devices + helium_devices + wayru_devices + metablox_devices
-)
+other_devices = total_hotspots - matched_devices.sum()
+
+# Print the results
+print("Total Hotspots:", total_hotspots)
+print("OpenRoaming Unsettled:", openroaming_unsettled)
+print("OpenRoaming Settled:", openroaming_settled)
+print("Google Orion Devices:", google_orion_devices)
+print("XNET Devices:", xnet_devices)
+print("Helium Devices:", helium_devices)
+print("Wayru Devices:", wayru_devices)
+print("MetaBlox Devices:", metablox_devices)
+print("EDUROAM Devices:", eduroam_devices)
+print("Other Devices:", other_devices)
 
 # Calculate most common SSIDs
 common_ssids = df['ssid'].value_counts().head(10)
@@ -46,6 +84,7 @@ stats_table = f"""
 | Total Hotspot 2.0 APs | {total_hotspots} | Total count of all Hotspot 2.0 access points |
 | OpenRoaming Unsettled | {openroaming_unsettled} | Count of devices with RCOI containing '5a03ba' |
 | OpenRoaming Settled | {openroaming_settled} | Count of devices with RCOI containing 'baa2d' but not '5a03ba' |
+| EDUROAM Devices | {eduroam_devices} | Count of devices with RCOI containing either '5a03ba0800' or '001bc50460' or with an SSID Matching "eduroam®" |
 | Google Orion Devices | {google_orion_devices} | Count of devices with RCOI containing 'f4f5e8f5f4' |
 | XNET Devices | {xnet_devices} | Count of devices with SSID containing 'XNET' |
 | Helium Devices | {helium_devices} | Count of devices with SSID containing 'Helium Mobile' |
