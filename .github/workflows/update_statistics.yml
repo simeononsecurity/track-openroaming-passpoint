@@ -42,9 +42,9 @@ jobs:
         run: python scripts/generate_map_png.py
         continue-on-error: true
 
-      - name: Run classify_locations.py
-        run: python scripts/classify_locations.py
-        continue-on-error: true
+      # - name: Run classify_locations.py
+      #   run: python scripts/classify_locations.py
+      #   continue-on-error: true
 
       - name: Run update_readme_stats.py
         run: python scripts/update_readme_stats.py
