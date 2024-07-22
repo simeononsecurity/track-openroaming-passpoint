@@ -32,18 +32,23 @@ jobs:
           API_NAME: ${{ secrets.API_NAME }}
           API_TOKEN: ${{ secrets.API_TOKEN }}
           AUTH_HEADER: ${{ secrets.AUTH_HEADER }}
+        continue-on-error: true
 
       - name: Run generate_map_html.py
         run: python scripts/generate_map_html.py
+        continue-on-error: true
 
       - name: Run generate_map_png.py
         run: python scripts/generate_map_png.py
+        continue-on-error: true
 
       - name: Run classify_locations.py
         run: python scripts/classify_locations.py
+        continue-on-error: true
 
       - name: Run update_readme_stats.py
         run: python scripts/update_readme_stats.py
+        continue-on-error: true
 
       - name: Commit and push changes
         run: |
