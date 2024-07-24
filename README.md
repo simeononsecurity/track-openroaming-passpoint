@@ -13,32 +13,32 @@ The stats are dynamic, we only pull year to date stats. But ultimately we'll upd
 ### OpenRoaming and Hotspot 2.0 Stats Table
 | Statistic | Count | Description |
 |-----------|-------|-------------|
-| Total Hotspot 2.0 APs | 19400 | Total count of all Hotspot 2.0 access points |
-| OpenRoaming Unsettled | 5819 | Count of devices with RCOI containing '5a03ba' |
+| Total Hotspot 2.0 APs | 23457 | Total count of all Hotspot 2.0 access points |
+| OpenRoaming Unsettled | 6723 | Count of devices with RCOI containing '5a03ba' |
 | OpenRoaming Settled | 243 | Count of devices with RCOI containing 'baa2d' but not '5a03ba' |
-| EDUROAM Devices | 57 | Count of devices with RCOI containing either '5a03ba0800' or '001bc50460' or with an SSID Matching "eduroam®" |
-| Google Orion Devices | 8499 | Count of devices with RCOI containing 'f4f5e8f5f4' |
-| XNET Devices | 230 | Count of devices with SSID containing 'XNET' |
+| EDUROAM Devices | 60 | Count of devices with RCOI containing either '5a03ba0800' or '001bc50460' or with an SSID Matching "eduroam®" |
+| Google Orion Devices | 10405 | Count of devices with RCOI containing 'f4f5e8f5f4' |
+| XNET Devices | 231 | Count of devices with SSID containing 'XNET' |
 | Helium Devices | 15 | Count of devices with SSID containing 'Helium Mobile' |
 | Wayru Devices | 0 | Count of devices with SSID containing 'Wayru' |
-| MetaBlox Devices | 4 | Count of devices with SSID containing 'MetaBlox' |
-| CityRoam Devices | 787 | Count of devices with SSID containing 'cityroam' |
-| Other Devices | 4844 | Count of devices that do not match any of the above categories |
+| MetaBlox Devices | 7 | Count of devices with SSID containing 'MetaBlox' |
+| CityRoam Devices | 904 | Count of devices with SSID containing 'cityroam' |
+| Other Devices | 6088 | Count of devices that do not match any of the above categories |
 
 
 ### Most Common RCOI Enabled SSIDs
 | SSID | Count |
 |------|-------|
-| BoldynPasspoint | 2910 |
-| Cellular Wi-Fi Passthrough | 1825 |
-| LiveBetter | 1368 |
-| .p | 1201 |
+| BoldynPasspoint | 3517 |
+| Cellular Wi-Fi Passthrough | 2098 |
+| LiveBetter | 1936 |
+| .p | 1683 |
+| adco | 1067 |
 | Xfinity Mobile | 1063 |
-| GPGMS_CarrierOffloading | 924 |
-| Passpoint WiFi | 898 |
-| Orion | 842 |
-| OpenRoaming@CLUS | 836 |
-| cityroam | 785 |
+| GPGMS_CarrierOffloading | 954 |
+| Passpoint WiFi | 945 |
+| cityroam | 902 |
+| Orion | 891 |
 
 <!-- STATS END -->
 
