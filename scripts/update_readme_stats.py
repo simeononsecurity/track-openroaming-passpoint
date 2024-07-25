@@ -83,6 +83,12 @@ print("EDUROAM Devices:", eduroam_devices)
 print("CityRoam Devices:", cityroam_devices)
 print("Other Devices:", other_devices)
 
+# Get a list of all unique RCOIs, split into individual parts, deduplicate, and sort alphabetically
+unique_rcois = df['rcois'].dropna().str.split().explode().unique()
+unique_rcois = sorted(set(unique_rcois))
+unique_rcois_list = ', '.join(unique_rcois)
+print("Unique RCOIs:", unique_rcois_list)
+
 # Calculate most common SSIDs
 common_ssids = df['ssid'].value_counts().head(10)
 
