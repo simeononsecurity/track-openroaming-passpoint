@@ -1,5 +1,9 @@
 # Track OpenRoaming Passpoint
 
+[![Sponsor](https://img.shields.io/badge/Sponsor-Click%20Here-ff69b4)](https://github.com/sponsors/simeononsecurity) [![Interactive Map](https://img.shields.io/badge/Interactive%20Map-View%20Here-blue)](https://openroamingmap.simeononsecurity.com)
+
+
+
 A collection of scripts and tools that tracks the availability of Hotspot 2.0, Passpoint, and OpenRoaming networks in the wild.
 
 Pulls from the Wigle.net dataset. 
@@ -16,7 +20,7 @@ The stats are dynamic, we only pull year to date stats. But ultimately we'll upd
 | Total Hotspot 2.0 APs | 23457 | Total count of all Hotspot 2.0 access points |
 | OpenRoaming Unsettled | 6826 | Count of devices with RCOI matching OpenRoaming unsettled categories |
 | OpenRoaming Settled | 243 | Count of devices with RCOI matching OpenRoaming settled categories |
-| EDUROAM Devices | 628 | Count of devices with RCOI containing either '5A03BA0800' or '1BC50460' or with an SSID matching "eduroam®" |
+| EDUROAM Devices | 628 | Count of devices with RCOI containing either '5A03BA0800' or '1BC50460' or with an SSID matching "eduroamÂ®" |
 | Google Orion Devices | 10405 | Count of devices with RCOI containing 'f4f5e8f5f4' |
 | XNET Devices | 231 | Count of devices with SSID containing 'XNET' |
 | Helium Devices | 15 | Count of devices with SSID containing 'Helium Mobile' |
@@ -45,12 +49,6 @@ The stats are dynamic, we only pull year to date stats. But ultimately we'll upd
 ### OpenRoaming and Hotspot 2.0 Table Mapped
 
 ![OpenRoaming and Hotspot 2.0 Table Map](https://github.com/simeononsecurity/track-openroaming-passpoint/blob/main/output/global_wifi_map.png)
-
-
-### Interactive Map of HotSpot 2.0 Networks
-
-[![Interactive Map](https://img.shields.io/badge/Interactive%20Map-View%20Here-blue)](https://openroamingmap.simeononsecurity.com)
-
 
 ## Table of Contents
 
