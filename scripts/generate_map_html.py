@@ -91,7 +91,9 @@ for idx, row in data_filtered.iterrows():
     markers.append({
         'latlng': [row['trilat'], row['trilong']],
         'popup': popup_text,
-        'categories': marker_categories
+        'categories': marker_categories,
+        'ssid': row['ssid'] if isinstance(row['ssid'], str) else '',
+        'rcois': row['rcois']
     })
     
     # Increment counts for each category
@@ -103,34 +105,110 @@ for idx, row in data_filtered.iterrows():
 total_count = len(markers)
 
 # Add the total count display and category counts
-category_counts_html = "".join([f"<br>{cat}: {count}" for cat, count in category_counts.items()])
+category_counts_html = "".join([f"<br><span class='category-count' id='count-{cat}'>{cat}: {count}</span>" for cat, count in category_counts.items()])
 
 total_count_html = f"""
-<div style="position: fixed; top: 25px; left: 25px; width: 200px; z-index: 1000; background: white; padding: 25px; border: 1px solid black;">
+<div class="count-container" style="position: fixed; top: 25px; left: 25px; width: 200px; z-index: 1000; background: white; padding: 25px; border: 1px solid black;">
     Total Nodes: <span id="total-count">{total_count}</span>
     {category_counts_html}
+    <br><span class='category-count' id='visible-count'>Visible Nodes: {total_count}</span>
 </div>
 """
 m.get_root().html.add_child(folium.Element(total_count_html))
 
 # Add the category checkboxes
 checkbox_html = """
-<div style="position: fixed; top: 25px; right: 25px; width: 200px; z-index: 1000; background: white; padding: 25px; border: 1px solid black;">
+<div class="filter-container" style="position: fixed; top: 25px; right: 25px; width: 200px; z-index: 1000; background: white; padding: 25px; border: 1px solid black;">
     <h4>Categories</h4>
 """
 for category in categories.keys():
     checkbox_html += f'<label><input type="checkbox" class="category-checkbox" value="{category}" checked> {category}</label><br>'
 checkbox_html += '<button onclick="applyFilter()">Apply</button></div>'
 
-m.get_root().html.add_child(folium.Element(checkbox_html))
+# Add search by SSID and RCOI
+search_html = """
+<div class="search-container" style="position: fixed; top: 500px; right: 25px; width: 200px; z-index: 1000; background: white; padding: 25px; border: 1px solid black;">
+    <h4>Search</h4>
+    <label for="ssid-search">SSID:</label>
+    <input type="text" id="ssid-search" class="search-input" style="padding-left: 10px; padding-right: 10px; max-width: 80%;"><br>
+    <label for="rcoi-search">RCOI:</label>
+    <input type="text" id="rcoi-search" class="search-input" style="padding-left: 10px; padding-right: 10px; max-width: 80%;"><br>
+    <label for="use-regex">Use Regex:</label>
+    <input type="checkbox" id="use-regex" class="search-input"><br>
+    <button onclick="applySearch()">Search</button>
+    <br>
+    Matched Nodes: <span id="search-count">0</span>
+</div>
+"""
+m.get_root().html.add_child(folium.Element(checkbox_html + search_html))
+
+# Add custom CSS for responsive design
+responsive_css = """
+<style>
+@media (max-width: 768px) {
+    .filter-container, .search-container, .category-count {
+        display: none;
+    }
+    .count-container {
+        width: 150px;
+    }
+}
+</style>
+"""
+m.get_root().html.add_child(folium.Element(responsive_css))
 
 # Add custom JavaScript for dynamic filtering and count updating
 custom_script = f"""
 <script>
     var markers = {json.dumps(markers)};
+    
+    function getMapInstance() {{
+        return Object.values(window).find(val => val instanceof L.Map);
+    }}
+    
+    function updateCounts(filteredMarkers) {{
+        var categoryCounts = {json.dumps(category_counts)};
+        var counts = {{}};
+        
+        Object.keys(categoryCounts).forEach(cat => {{
+            counts[cat] = 0;
+        }});
+
+        filteredMarkers.forEach(marker_obj => {{
+            Object.keys(marker_obj.categories).forEach(cat => {{
+                if (marker_obj.categories[cat]) {{
+                    counts[cat]++;
+                }}
+            }});
+        }});
+        
+        Object.keys(counts).forEach(cat => {{
+            var countElem = document.getElementById('count-' + cat);
+            if (countElem) {{
+                if (counts[cat] > 0) {{
+                    countElem.style.display = '';
+                    countElem.innerText = cat + ': ' + counts[cat];
+                }} else {{
+                    countElem.style.display = 'none';
+                }}
+            }}
+        }});
+        
+        document.getElementById('visible-count').innerText = 'Visible Nodes: ' + filteredMarkers.length;
+    }}
+
+    function updateVisibleCount() {{
+        var map = getMapInstance();
+        var bounds = map.getBounds();
+        var visibleMarkers = markers.filter(function(marker_obj) {{
+            return bounds.contains(marker_obj.latlng);
+        }});
+        document.getElementById('visible-count').innerText = 'Visible Nodes: ' + visibleMarkers.length;
+    }}
 
     function applyFilter() {{
-        var filtered_count = 0;
+        var map = getMapInstance();
+        var filteredMarkers = [];
         var selectedCategories = Array.from(document.querySelectorAll('.category-checkbox:checked')).map(cb => cb.value);
 
         {marker_cluster.get_name()}.clearLayers();
@@ -143,10 +221,53 @@ custom_script = f"""
             if (match) {{
                 var marker = L.marker(marker_obj.latlng).bindPopup(marker_obj.popup);
                 marker.addTo({marker_cluster.get_name()});
-                filtered_count++;
+                filteredMarkers.push(marker_obj);
             }}
         }});
+
+        updateCounts(filteredMarkers);
+        updateVisibleCount();
     }}
+
+    function applySearch() {{
+        var map = getMapInstance();
+        var ssidSearch = document.getElementById('ssid-search').value;
+        var rcoiSearch = document.getElementById('rcoi-search').value;
+        var useRegex = document.getElementById('use-regex').checked;
+
+        var regexFlags = 'i';
+        var ssidRegex = new RegExp(ssidSearch, regexFlags);
+        var rcoiRegex = new RegExp(rcoiSearch, regexFlags);
+
+        var matchedMarkers = [];
+        {marker_cluster.get_name()}.clearLayers();
+
+        markers.forEach(function(marker_obj) {{
+            var ssidMatch = useRegex ? ssidRegex.test(marker_obj.ssid) : marker_obj.ssid.toLowerCase().includes(ssidSearch.toLowerCase());
+            var rcoiMatch = useRegex ? rcoiRegex.test(marker_obj.rcois) : marker_obj.rcois.toLowerCase().includes(rcoiSearch.toLowerCase());
+
+            if (ssidMatch && rcoiMatch) {{
+                var marker = L.marker(marker_obj.latlng).bindPopup(marker_obj.popup);
+                marker.addTo({marker_cluster.get_name()});
+                matchedMarkers.push(marker_obj);
+            }}
+        }});
+
+        document.getElementById('search-count').innerText = matchedMarkers.length;
+
+        // Uncheck all category options
+        document.querySelectorAll('.category-checkbox').forEach(cb => {{
+            cb.checked = false;
+        }});
+
+        updateCounts(matchedMarkers);
+        updateVisibleCount();
+    }}
+
+    document.addEventListener('DOMContentLoaded', function() {{
+        var map = getMapInstance();
+        map.on('moveend', updateVisibleCount);
+    }});
 </script>
 """
 m.get_root().html.add_child(folium.Element(custom_script))
