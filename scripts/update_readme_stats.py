@@ -17,29 +17,36 @@ df['rcois'] = df['rcois'].str.lower()
 # Calculate statistics
 total_hotspots = len(df)
 
+# Split the RCOIs into separate rows
+rcois_expanded = df['rcois'].str.split(expand=True).stack().reset_index(level=1, drop=True)
+rcois_expanded.name = 'rcoi'
+
+# Create a DataFrame from the expanded RCOIs
+rcoi_df = df.join(rcois_expanded).drop(columns=['rcois'])
+
 # Boolean series for each category
-openroaming_unsettled_match = df['rcois'].str.contains(
+openroaming_unsettled_match = rcoi_df['rcoi'].str.contains(
     '5a03ba|4096|5a03ba0000|500b|5a03ba1000|502a|5a03ba0a00|50a7|5a03ba1a00|5014|5a03ba0200|50bd|5a03ba1200|503e|5a03ba0300|50d1|5a03ba1300|5050|50e2|5053|5a03ba0b00|50f0|5a03ba1b00|5054|5a03ba0600|562b|5a03ba1600|5073|5a03ba0100|57d2|5a03ba1100|5a03ba0400|5a03ba0500|5a03ba0800|5a03ba0900',
     na=False
 )
-openroaming_settled_match = df['rcois'].str.contains(
-    'baa2d|500f|baa2d00000|baa2d00100|baa2d01100|baa2d02100|baa2d03100|baa2d04100|baa2d05100|baa2d00500',
+openroaming_settled_match = rcoi_df['rcoi'].str.contains(
+    'baa2d|500f|baa2d00000|baa2d00100|baa2d01100|baa2d02100|baa2d03100|baa2d04100|baa2d05100|baa2d00500|baa2d0|baa2d06000',
     na=False
 ) & ~openroaming_unsettled_match
-google_orion_devices_match = df['rcois'].str.contains('f4f5e8f5f4', na=False)
-ironwifi_devices_match = df['rcois'].str.contains('aa146b0000', na=False)
-xnet_devices_match = df['ssid'].str.contains('XNET', na=False, case=False)
-helium_devices_match = df['ssid'].str.contains('Helium Mobile', na=False, case=False)
-wayru_devices_match = df['ssid'].str.contains('Wayru', na=False, case=False)
-metablox_devices_match = df['ssid'].str.contains('MetaBlox', na=False, case=False)
+google_orion_devices_match = rcoi_df['rcoi'].str.contains('f4f5e8f5f4', na=False)
+ironwifi_devices_match = rcoi_df['rcoi'].str.contains('aa146b0000', na=False)
+xnet_devices_match = rcoi_df['ssid'].str.contains('XNET', na=False, case=False)
+helium_devices_match = rcoi_df['ssid'].str.contains('Helium Mobile', na=False, case=False)
+wayru_devices_match = rcoi_df['ssid'].str.contains('Wayru', na=False, case=False)
+metablox_devices_match = rcoi_df['ssid'].str.contains('MetaBlox', na=False, case=False)
 
 # Boolean series for EDUROAM Devices
-eduroam_rcois_match = df['rcois'].str.contains('5a03ba0800|1bc50460', na=False)
-eduroam_ssid_match = ~eduroam_rcois_match & df['ssid'].str.contains('eduroam®|eduroam', na=False, case=False)
+eduroam_rcois_match = rcoi_df['rcoi'].str.contains('5a03ba0800|1bc50460', na=False)
+eduroam_ssid_match = ~eduroam_rcois_match & rcoi_df['ssid'].str.contains('eduroam®|eduroam', na=False, case=False)
 eduroam_devices_match = eduroam_rcois_match | eduroam_ssid_match
 
 # Boolean series for CityRoam devices
-cityroam_devices_match = df['ssid'].str.contains('cityroam', na=False, case=False)
+cityroam_devices_match = rcoi_df['ssid'].str.contains('cityroam', na=False, case=False)
 
 # Sum of unique matches
 openroaming_unsettled = openroaming_unsettled_match.sum()
@@ -68,7 +75,7 @@ matched_devices = (
 )
 
 # Calculate count of unique matched devices
-unique_matched_devices = df[matched_devices].drop_duplicates().sort_values(by=['rcois', 'ssid'])
+unique_matched_devices = rcoi_df[matched_devices].drop_duplicates().sort_values(by=['rcoi', 'ssid'])
 
 # Calculate count of devices that don't match any of the previous rules
 other_devices = total_hotspots - unique_matched_devices.shape[0]
@@ -87,9 +94,11 @@ print("EDUROAM Devices:", eduroam_devices)
 print("CityRoam Devices:", cityroam_devices)
 print("Other Devices:", other_devices)
 
-# Get a list of all unique RCOIs, split into individual parts, deduplicate, and sort alphabetically
-unique_rcois = df['rcois'].dropna().str.split().explode().unique()
-unique_rcois = sorted(set(unique_rcois))
+# Calculate counts for each unique RCOI
+rcoi_counts = rcoi_df['rcoi'].value_counts()
+
+# Get a list of all unique RCOIs, deduplicate, and sort alphabetically
+unique_rcois = sorted(set(rcoi_counts.index))
 
 # Create a dictionary for RCOI definitions
 rcoi_definitions = {
@@ -138,9 +147,14 @@ rcoi_definitions = {
     'baa2d04100': 'OpenRoaming Settled',
     'baa2d05100': 'OpenRoaming Settled',
     'baa2d00500': 'OpenRoaming Settled',
+    'baa2d0': 'OpenRoaming Settled',
+    'baa2d06000': 'OpenRoaming Settled',
     'f4f5e8f5f4': 'Google Orion Devices',
     'aa146b0000': 'IronWiFi Devices',
     '3af521': 'SingleDigits Testing RCOI',
+    '310280': 'ATT Offload ?',
+    '310410': 'ATT Offload ?',
+    '313100': 'ATT Offload ?',
     # Add any other known RCOIs here
 }
 
@@ -175,11 +189,12 @@ ssids_table = """
 for ssid, count in common_ssids.items():
     ssids_table += f"| {ssid} | {count} |\n"
 
-# Create markdown table for unique RCOIs and their definitions
-rcoi_table = "### Unique RCOIs\n| RCOI | Definition |\n|------|------------|\n"
+# Create markdown table for unique RCOIs and their definitions with counts
+rcoi_table = "### Unique RCOIs\n| RCOI | Definition | Count |\n|------|------------|-------|\n"
 for rcoi in unique_rcois:
     definition = rcoi_definitions.get(rcoi, "Unknown")
-    rcoi_table += f"| {rcoi} | {definition} |\n"
+    count = rcoi_counts.get(rcoi, 0)
+    rcoi_table += f"| {rcoi} | {definition} | {count} |\n"
 
 # Read the README file
 with open(readme_path, 'r') as f:
