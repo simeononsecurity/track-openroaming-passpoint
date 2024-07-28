@@ -44,6 +44,10 @@ The stats are dynamic, we only pull year to date stats. But ultimately we'll upd
 | cityroam | 902 |
 | Orion | 891 |
 
+### Unique RCOIs
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 112233 | 1122330000 | 1834af | 1bc50460 | 1bc5046f | 1bc504bd | 21122 | 2233445566 | 24e4ce | 310280 | 310410 | 313100 | 3213445172 | 3af050201 | 3af521 | 40202 | 4096 | 445566 | 500b | 500f | 506f9a | 5a03ba | 5a03ba0000 | 5a03ba0100 | 5a03ba0600 | 5a03ba0800 | 5a03ba1000 | 6a1f6c | 840112 | a43 | aa146b | aa146b0000 | baa2d0 | baa2d00000 | baa2d00100 | baa2d06000 | c | cae505 | da9d490000 | da9d490005 | f4f5e8f5d4 | f4f5e8f5e4 | f4f5e8f5f4 |
+
 <!-- STATS END -->
 
 ### OpenRoaming and Hotspot 2.0 Table Mapped

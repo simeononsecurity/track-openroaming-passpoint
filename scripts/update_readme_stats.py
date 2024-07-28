@@ -90,8 +90,6 @@ print("Other Devices:", other_devices)
 # Get a list of all unique RCOIs, split into individual parts, deduplicate, and sort alphabetically
 unique_rcois = df['rcois'].dropna().str.split().explode().unique()
 unique_rcois = sorted(set(unique_rcois))
-unique_rcois_list = ', '.join(unique_rcois)
-print("Unique RCOIs:", unique_rcois_list)
 
 # Calculate most common SSIDs
 common_ssids = df['ssid'].value_counts().head(10)
@@ -124,6 +122,10 @@ ssids_table = """
 for ssid, count in common_ssids.items():
     ssids_table += f"| {ssid} | {count} |\n"
 
+# Create markdown table for unique RCOIs in a horizontal format
+rcoi_table = "| " + " | ".join(unique_rcois) + " |\n"
+rcoi_table = "| " + " | ".join(["---"] * len(unique_rcois)) + " |\n" + rcoi_table
+
 # Read the README file
 with open(readme_path, 'r') as f:
     readme_content = f.read()
@@ -131,7 +133,7 @@ with open(readme_path, 'r') as f:
 # Ensure the markers are present in the README
 if '<!-- STATS START -->' in readme_content and '<!-- STATS END -->' in readme_content:
     before_stats, after_stats = readme_content.split('<!-- STATS START -->')[0], readme_content.split('<!-- STATS END -->')[1]
-    new_readme_content = before_stats + '<!-- STATS START -->\n' + stats_table + '\n' + ssids_table + '\n<!-- STATS END -->' + after_stats
+    new_readme_content = before_stats + '<!-- STATS START -->\n' + stats_table + '\n' + ssids_table + '\n### Unique RCOIs\n' + rcoi_table + '\n<!-- STATS END -->' + after_stats
 
     # Write the new content back to the README file
     with open(readme_path, 'w') as f:
