@@ -14,6 +14,9 @@ df = pd.read_csv(csv_file)
 # Convert rcois column to lowercase
 df['rcois'] = df['rcois'].str.lower()
 
+# Create a unique identifier for each device based on trilat, trilong, and ssid
+df['device_id'] = df['trilat'].astype(str) + "_" + df['trilong'].astype(str) + "_" + df['ssid']
+
 # Calculate statistics
 total_hotspots = len(df)
 
@@ -48,17 +51,22 @@ eduroam_devices_match = eduroam_rcois_match | eduroam_ssid_match
 # Boolean series for CityRoam devices
 cityroam_devices_match = rcoi_df['ssid'].str.contains('cityroam', na=False, case=False)
 
-# Sum of unique matches
-openroaming_unsettled = openroaming_unsettled_match.sum()
-openroaming_settled = openroaming_settled_match.sum()
-google_orion_devices = google_orion_devices_match.sum()
-ironwifi_devices = ironwifi_devices_match.sum()
-xnet_devices = xnet_devices_match.sum()
-helium_devices = helium_devices_match.sum()
-wayru_devices = wayru_devices_match.sum()
-metablox_devices = metablox_devices_match.sum()
-eduroam_devices = eduroam_devices_match.sum()
-cityroam_devices = cityroam_devices_match.sum()
+# Function to count unique devices for each match
+def count_unique_devices(df, match):
+    unique_devices = df[match].drop_duplicates(subset=['device_id']).shape[0]
+    return unique_devices
+
+# Count unique devices for each category
+openroaming_unsettled = count_unique_devices(rcoi_df, openroaming_unsettled_match)
+openroaming_settled = count_unique_devices(rcoi_df, openroaming_settled_match)
+google_orion_devices = count_unique_devices(rcoi_df, google_orion_devices_match)
+ironwifi_devices = count_unique_devices(rcoi_df, ironwifi_devices_match)
+xnet_devices = count_unique_devices(rcoi_df, xnet_devices_match)
+helium_devices = count_unique_devices(rcoi_df, helium_devices_match)
+wayru_devices = count_unique_devices(rcoi_df, wayru_devices_match)
+metablox_devices = count_unique_devices(rcoi_df, metablox_devices_match)
+eduroam_devices = count_unique_devices(rcoi_df, eduroam_devices_match)
+cityroam_devices = count_unique_devices(rcoi_df, cityroam_devices_match)
 
 # Boolean series for devices that have been matched
 matched_devices = (
@@ -74,11 +82,8 @@ matched_devices = (
     cityroam_devices_match
 )
 
-# Calculate count of unique matched devices
-unique_matched_devices = rcoi_df[matched_devices].drop_duplicates().sort_values(by=['rcoi', 'ssid'])
-
 # Calculate count of devices that don't match any of the previous rules
-other_devices = total_hotspots - unique_matched_devices.shape[0]
+other_devices = rcoi_df[~matched_devices].drop_duplicates(subset=['device_id']).shape[0]
 
 # Print the results
 print("Total Hotspots:", total_hotspots)

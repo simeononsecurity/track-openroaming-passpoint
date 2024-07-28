@@ -17,17 +17,17 @@ The stats are dynamic, we only pull year to date stats. But ultimately we'll upd
 | Statistic | Count | Description |
 |-----------|-------|-------------|
 | Total Hotspot 2.0 APs | 23457 | Total count of all Hotspot 2.0 access points |
-| OpenRoaming Unsettled | 13824 | Count of devices with RCOI matching any OpenRoaming unsettled RCOI |
-| OpenRoaming Settled | 510 | Count of devices with RCOI matching any OpenRoaming settled RCOI |
-| EDUROAM Devices | 642 | Count of devices with RCOI containing either '5A03BA0800' or '1BC50460' or with an SSID matching "eduroam" |
-| Google Orion Devices | 10405 | Count of devices with RCOI containing 'f4f5e8f5f4' |
-| IronWiFi Devices | 161 | Count of devices with RCOI containing 'aa146b0000' |
-| XNET Devices | 495 | Count of devices with SSID containing 'XNET' |
-| Helium Devices | 25 | Count of devices with SSID containing 'Helium Mobile' |
+| OpenRoaming Unsettled | 5799 | Count of devices with RCOI matching any OpenRoaming unsettled RCOI |
+| OpenRoaming Settled | 284 | Count of devices with RCOI matching any OpenRoaming settled RCOI |
+| EDUROAM Devices | 549 | Count of devices with RCOI containing either '5A03BA0800' or '1BC50460' or with an SSID matching "eduroam" |
+| Google Orion Devices | 8719 | Count of devices with RCOI containing 'f4f5e8f5f4' |
+| IronWiFi Devices | 156 | Count of devices with RCOI containing 'aa146b0000' |
+| XNET Devices | 224 | Count of devices with SSID containing 'XNET' |
+| Helium Devices | 14 | Count of devices with SSID containing 'Helium Mobile' |
 | Wayru Devices | 0 | Count of devices with SSID containing 'Wayru' |
-| MetaBlox Devices | 14 | Count of devices with SSID containing 'MetaBlox' |
-| CityRoam Devices | 1809 | Count of devices with SSID containing 'cityroam' |
-| Other Devices | -2068 | Count of devices that do not match any of the above categories |
+| MetaBlox Devices | 7 | Count of devices with SSID containing 'MetaBlox' |
+| CityRoam Devices | 661 | Count of devices with SSID containing 'cityroam' |
+| Other Devices | 9321 | Count of devices that do not match any of the above categories |
 
 
 ### Most Common RCOI Enabled SSIDs
