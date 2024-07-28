@@ -14,8 +14,8 @@ df = pd.read_csv(csv_file)
 # Convert rcois column to lowercase
 df['rcois'] = df['rcois'].str.lower()
 
-# Create a unique identifier for each device based on trilat, trilong, and ssid
-df['device_id'] = df['trilat'].astype(str) + "_" + df['trilong'].astype(str) + "_" + df['ssid']
+# Create a unique identifier for each device based on all columns
+df['device_id'] = df.apply(lambda row: '_'.join(row.values.astype(str)), axis=1)
 
 # Calculate statistics
 total_hotspots = len(df)
