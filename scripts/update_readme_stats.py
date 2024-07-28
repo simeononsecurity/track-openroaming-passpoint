@@ -91,6 +91,59 @@ print("Other Devices:", other_devices)
 unique_rcois = df['rcois'].dropna().str.split().explode().unique()
 unique_rcois = sorted(set(unique_rcois))
 
+# Create a dictionary for RCOI definitions
+rcoi_definitions = {
+    '5a03ba': 'OpenRoaming Unsettled',
+    '4096': 'OpenRoaming Unsettled',
+    '5a03ba0000': 'OpenRoaming Unsettled',
+    '500b': 'OpenRoaming Unsettled',
+    '5a03ba1000': 'OpenRoaming Unsettled',
+    '502a': 'OpenRoaming Unsettled',
+    '5a03ba0a00': 'OpenRoaming Unsettled',
+    '50a7': 'OpenRoaming Unsettled',
+    '5a03ba1a00': 'OpenRoaming Unsettled',
+    '5014': 'OpenRoaming Unsettled',
+    '5a03ba0200': 'OpenRoaming Unsettled',
+    '50bd': 'OpenRoaming Unsettled',
+    '5a03ba1200': 'OpenRoaming Unsettled',
+    '503e': 'OpenRoaming Unsettled',
+    '5a03ba0300': 'OpenRoaming Unsettled',
+    '50d1': 'OpenRoaming Unsettled',
+    '5a03ba1300': 'OpenRoaming Unsettled',
+    '5050': 'OpenRoaming Unsettled',
+    '50e2': 'OpenRoaming Unsettled',
+    '5053': 'OpenRoaming Unsettled',
+    '5a03ba0b00': 'OpenRoaming Unsettled',
+    '50f0': 'OpenRoaming Unsettled',
+    '5a03ba1b00': 'OpenRoaming Unsettled',
+    '5054': 'OpenRoaming Unsettled',
+    '5a03ba0600': 'OpenRoaming Unsettled',
+    '562b': 'OpenRoaming Unsettled',
+    '5a03ba1600': 'OpenRoaming Unsettled',
+    '5073': 'OpenRoaming Unsettled',
+    '5a03ba0100': 'OpenRoaming Unsettled',
+    '57d2': 'OpenRoaming Unsettled',
+    '5a03ba1100': 'OpenRoaming Unsettled',
+    '5a03ba0400': 'OpenRoaming Unsettled',
+    '5a03ba0500': 'OpenRoaming Unsettled',
+    '5a03ba0800': 'OpenRoaming Unsettled',
+    '5a03ba0900': 'OpenRoaming Unsettled',
+    'baa2d': 'OpenRoaming Settled',
+    '500f': 'OpenRoaming Settled',
+    'baa2d00000': 'OpenRoaming Settled',
+    'baa2d00100': 'OpenRoaming Settled',
+    'baa2d01100': 'OpenRoaming Settled',
+    'baa2d02100': 'OpenRoaming Settled',
+    'baa2d03100': 'OpenRoaming Settled',
+    'baa2d04100': 'OpenRoaming Settled',
+    'baa2d05100': 'OpenRoaming Settled',
+    'baa2d00500': 'OpenRoaming Settled',
+    'f4f5e8f5f4': 'Google Orion Devices',
+    'aa146b0000': 'IronWiFi Devices',
+    '3af521': 'SingleDigits Testing RCOI',
+    # Add any other known RCOIs here
+}
+
 # Calculate most common SSIDs
 common_ssids = df['ssid'].value_counts().head(10)
 
@@ -122,12 +175,11 @@ ssids_table = """
 for ssid, count in common_ssids.items():
     ssids_table += f"| {ssid} | {count} |\n"
 
-# Create markdown table for unique RCOIs in a horizontal format with 5 per row
-rcoi_table = "### Unique RCOIs\n| "
-for i, rcoi in enumerate(unique_rcois):
-    rcoi_table += f"{rcoi} | "
-    if (i + 1) % 5 == 0 and (i + 1) != len(unique_rcois):
-        rcoi_table += "\n| "
+# Create markdown table for unique RCOIs and their definitions
+rcoi_table = "### Unique RCOIs\n| RCOI | Definition |\n|------|------------|\n"
+for rcoi in unique_rcois:
+    definition = rcoi_definitions.get(rcoi, "Unknown")
+    rcoi_table += f"| {rcoi} | {definition} |\n"
 
 # Read the README file
 with open(readme_path, 'r') as f:
