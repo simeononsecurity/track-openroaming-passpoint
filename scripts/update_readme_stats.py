@@ -27,6 +27,7 @@ openroaming_settled_match = df['rcois'].str.contains(
     na=False
 ) & ~openroaming_unsettled_match
 google_orion_devices_match = df['rcois'].str.contains('f4f5e8f5f4', na=False)
+ironwifi_devices_match = df['rcois'].str.contains('aa146b0000', na=False)
 xnet_devices_match = df['ssid'].str.contains('XNET', na=False, case=False)
 helium_devices_match = df['ssid'].str.contains('Helium Mobile', na=False, case=False)
 wayru_devices_match = df['ssid'].str.contains('Wayru', na=False, case=False)
@@ -44,6 +45,7 @@ cityroam_devices_match = df['ssid'].str.contains('cityroam', na=False, case=Fals
 openroaming_unsettled = openroaming_unsettled_match.sum()
 openroaming_settled = openroaming_settled_match.sum()
 google_orion_devices = google_orion_devices_match.sum()
+ironwifi_devices = ironwifi_devices_match.sum()
 xnet_devices = xnet_devices_match.sum()
 helium_devices = helium_devices_match.sum()
 wayru_devices = wayru_devices_match.sum()
@@ -56,6 +58,7 @@ matched_devices = (
     openroaming_unsettled_match |
     openroaming_settled_match |
     google_orion_devices_match |
+    ironwifi_devices_match |
     xnet_devices_match |
     helium_devices_match |
     wayru_devices_match |
@@ -75,6 +78,7 @@ print("Total Hotspots:", total_hotspots)
 print("OpenRoaming Unsettled:", openroaming_unsettled)
 print("OpenRoaming Settled:", openroaming_settled)
 print("Google Orion Devices:", google_orion_devices)
+print("IronWiFi Devices:", ironwifi_devices)
 print("XNET Devices:", xnet_devices)
 print("Helium Devices:", helium_devices)
 print("Wayru Devices:", wayru_devices)
@@ -98,10 +102,11 @@ stats_table = f"""
 | Statistic | Count | Description |
 |-----------|-------|-------------|
 | Total Hotspot 2.0 APs | {total_hotspots} | Total count of all Hotspot 2.0 access points |
-| OpenRoaming Unsettled | {openroaming_unsettled} | Count of devices with RCOI matching OpenRoaming unsettled categories |
-| OpenRoaming Settled | {openroaming_settled} | Count of devices with RCOI matching OpenRoaming settled categories |
-| EDUROAM Devices | {eduroam_devices} | Count of devices with RCOI containing either '5A03BA0800' or '1BC50460' or with an SSID matching "eduroam®" |
+| OpenRoaming Unsettled | {openroaming_unsettled} | Count of devices with RCOI matching any OpenRoaming unsettled RCOI |
+| OpenRoaming Settled | {openroaming_settled} | Count of devices with RCOI matching any OpenRoaming settled RCOI |
+| EDUROAM Devices | {eduroam_devices} | Count of devices with RCOI containing either '5A03BA0800' or '1BC50460' or with an SSID matching "eduroam" |
 | Google Orion Devices | {google_orion_devices} | Count of devices with RCOI containing 'f4f5e8f5f4' |
+| IronWiFi Devices | {ironwifi_devices} | Count of devices with RCOI containing 'aa146b0000' |
 | XNET Devices | {xnet_devices} | Count of devices with SSID containing 'XNET' |
 | Helium Devices | {helium_devices} | Count of devices with SSID containing 'Helium Mobile' |
 | Wayru Devices | {wayru_devices} | Count of devices with SSID containing 'Wayru' |
