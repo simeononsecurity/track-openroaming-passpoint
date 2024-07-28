@@ -124,7 +124,7 @@ for ssid, count in common_ssids.items():
 
 # Create markdown table for unique RCOIs in a horizontal format
 rcoi_table = "| " + " | ".join(unique_rcois) + " |\n"
-rcoi_table = "| " + " | ".join(["---"] * len(unique_rcois)) + " |\n" + rcoi_table
+rcoi_table_header = "| " + " | ".join(["---"] * len(unique_rcois)) + " |\n"
 
 # Read the README file
 with open(readme_path, 'r') as f:
@@ -133,7 +133,7 @@ with open(readme_path, 'r') as f:
 # Ensure the markers are present in the README
 if '<!-- STATS START -->' in readme_content and '<!-- STATS END -->' in readme_content:
     before_stats, after_stats = readme_content.split('<!-- STATS START -->')[0], readme_content.split('<!-- STATS END -->')[1]
-    new_readme_content = before_stats + '<!-- STATS START -->\n' + stats_table + '\n' + ssids_table + '\n### Unique RCOIs\n' + rcoi_table + '\n<!-- STATS END -->' + after_stats
+    new_readme_content = before_stats + '<!-- STATS START -->\n' + stats_table + '\n' + ssids_table + '\n### Unique RCOIs\n' + rcoi_table_header + rcoi_table + '\n<!-- STATS END -->' + after_stats
 
     # Write the new content back to the README file
     with open(readme_path, 'w') as f:
