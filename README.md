@@ -16,10 +16,10 @@ The stats are dynamic, we only pull year to date stats. But ultimately we'll upd
 ### OpenRoaming and Hotspot 2.0 Stats Table
 | Statistic | Count | Description |
 |-----------|-------|-------------|
-| Total Hotspot 2.0 APs | 23457 | Total count of all Hotspot 2.0 access points |
+| Total Hotspot 2.0 APs | 33357 | Total count of all Hotspot 2.0 access points |
 | OpenRoaming Unsettled | 6826 | Count of devices with RCOI matching any OpenRoaming unsettled RCOI |
 | OpenRoaming Settled | 292 | Count of devices with RCOI matching any OpenRoaming settled RCOI |
-| EDUROAM Devices | 628 | Count of devices with RCOI containing either '5A03BA0800' or '1BC50460' or with an SSID matching "eduroam" |
+| EDUROAM Devices | 656 | Count of devices with RCOI containing either '5A03BA0800' or '1BC50460' or with an SSID matching "eduroam" |
 | Google Orion Devices | 10405 | Count of devices with RCOI containing 'f4f5e8f5f4' |
 | IronWiFi Devices | 161 | Count of devices with RCOI containing 'aa146b0000' |
 | XNET Devices | 231 | Count of devices with SSID containing 'XNET' |
@@ -27,7 +27,7 @@ The stats are dynamic, we only pull year to date stats. But ultimately we'll upd
 | Wayru Devices | 0 | Count of devices with SSID containing 'Wayru' |
 | MetaBlox Devices | 7 | Count of devices with SSID containing 'MetaBlox' |
 | CityRoam Devices | 904 | Count of devices with SSID containing 'cityroam' |
-| Other Devices | 11005 | Count of devices that do not match any of the above categories |
+| Other Devices | 20877 | Count of devices that do not match any of the above categories |
 
 
 ### Most Common RCOI Enabled SSIDs
@@ -47,6 +47,7 @@ The stats are dynamic, we only pull year to date stats. But ultimately we'll upd
 ### Unique RCOIs
 | RCOI | Definition | Count |
 |------|------------|-------|
+| 0 | Unknown | 8456 |
 | 112233 | Unknown | 1 |
 | 1122330000 | Unknown | 16 |
 | 1834af | Unknown | 241 |
