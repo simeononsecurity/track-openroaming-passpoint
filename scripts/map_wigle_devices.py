@@ -25,7 +25,7 @@ params = {
     "startTransID": "20240101-00000",
     "freenet": "false",
     "paynet": "false",
-    "rcoisMinimum": "0",
+    "rcoisMinimum": "4096",
     #"country": "US",
     "resultsPerPage": "1000"
 }
