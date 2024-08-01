@@ -105,60 +105,61 @@ rcoi_counts = rcoi_df['rcoi'].value_counts()
 # Get a list of all unique RCOIs, deduplicate, and sort alphabetically
 unique_rcois = sorted(set(rcoi_counts.index))
 
-# Create a dictionary for RCOI definitions
+# Define the RCOI definitions accurately without unnecessary leading zeros
+# Complete RCOI definitions, including non-OpenRoaming entries
 rcoi_definitions = {
-    '004096': 'OpenRoaming Unsettled Legacy / Samsung OneUI (All)',
-    '00500b': 'OpenRoaming Unsettled Legacy (All with real ID)',
-    '00500f': 'OpenRoaming Settled Legacy (All paid members)',
-    '005014': 'OpenRoaming Unsettled Legacy (Cloud or Social ID)',
-    '00502a': 'OpenRoaming Unsettled Legacy (Device manufacturer all ID)',
-    '00503e': 'OpenRoaming Unsettled Legacy (Enterprise Employee ID)',
-    '005050': 'OpenRoaming Unsettled Legacy (Enterprise Customer ID)',
-    '005053': 'OpenRoaming Unsettled Legacy (Loyalty Retail ID)',
-    '005054': 'OpenRoaming Unsettled Legacy Legacy (Loyalty Hospitality ID)',
-    '005073': 'OpenRoaming Unsettled Legacy Legacy (SP free Bronze QoS)',
-    '0050a7': 'OpenRoaming Unsettled Legacy (Device manufacturer real ID only)',
-    '0050bd': 'OpenRoaming Unsettled Legacy (Cloud or Social real ID)',
-    '0050d1': 'OpenRoaming Unsettled Legacy (Enterprise Employee real ID)',
-    '0050e2': 'OpenRoaming Unsettled Legacy (Enterprise Customer real ID)',
-    '0050f0': 'OpenRoaming Unsettled Legacy (Loyalty Retail real ID)',
-    '00562b': 'OpenRoaming Unsettled Legacy Legacy (Loyalty Hospitality real ID)',
-    '0057d2': 'OpenRoaming Unsettled Legacy Legacy (SP free Bronze QoS Real ID)',
-    '5A03BA': 'OpenRoaming Unsettled',
-    '5A03BA0000': 'OpenRoaming Unsettled (All)',
-    '5A03BA0100': 'OpenRoaming Unsettled (SP free Bronze QoS)',
-    '5A03BA0200': 'OpenRoaming Unsettled (Cloud or Social ID)',
-    '5A03BA0300': 'OpenRoaming Unsettled (Enterprise Employee ID)',
-    '5A03BA0400': 'OpenRoaming Unsettled (Government ID free)',
-    '5A03BA0500': 'OpenRoaming Unsettled (Automotive ID free)',
-    '5A03BA0600': 'OpenRoaming Unsettled (Loyalty Hospitality ID)',
-    '5A03BA0800': 'OpenRoaming Unsettled (Education or Research ID free)',
-    '5A03BA0900': 'OpenRoaming Unsettled (Cable ID free)',
-    '5A03BA0A00': 'OpenRoaming Unsettled (Device manufacturer all ID)',
-    '5A03BA0B00': 'OpenRoaming Unsettled (Loyalty Retail ID)',
-    '5A03BA1000': 'OpenRoaming Unsettled (All with real ID)',
-    '5A03BA1100': 'OpenRoaming Unsettled (SP free Bronze QoS Real ID)',
-    '5A03BA1200': 'OpenRoaming Unsettled (Cloud or Social real ID)',
-    '5A03BA1300': 'OpenRoaming Unsettled (Enterprise Employee real ID)',
-    '5A03BA1600': 'OpenRoaming Unsettled (Loyalty Hospitality real ID)',
-    '5A03BA1A00': 'OpenRoaming Unsettled (Device manufacturer real ID only)',
-    '5A03BA1B00': 'OpenRoaming Unsettled (Loyalty Retail real ID)',
-    'BAA2D': 'OpenRoaming Settled',
-    'BAA2D00000': 'OpenRoaming Settled (All paid members)',
-    'BAA2D00100': 'OpenRoaming Settled (SP paid Bronze QoS)',
-    'BAA2D01100': 'OpenRoaming Settled (SP paid Bronze QoS real ID)',
-    'BAA2D02100': 'OpenRoaming Settled (SP paid Silver QoS)',
-    'BAA2D03100': 'OpenRoaming Settled (SP paid Silver QoS real ID)',
-    'BAA2D04100': 'OpenRoaming Settled (SP paid Gold QoS)',
-    'BAA2D05100': 'OpenRoaming Settled (SP paid Gold QoS real ID)',
-    'BAA2D00500': 'OpenRoaming Settled (Automotive Paid)',
+    '4096': 'OpenRoaming Unsettled Legacy / Samsung OneUI (All)',
+    '500b': 'OpenRoaming Unsettled Legacy (All with real ID)',
+    '500f': 'OpenRoaming Settled Legacy (All paid members)',
+    '502a': 'OpenRoaming Unsettled Legacy (Device manufacturer all ID)',
+    '50a7': 'OpenRoaming Unsettled Legacy (Device manufacturer real ID only)',
+    '5014': 'OpenRoaming Unsettled Legacy (Cloud or Social ID)',
+    '50bd': 'OpenRoaming Unsettled Legacy (Cloud or Social real ID)',
+    '503e': 'OpenRoaming Unsettled Legacy (Enterprise Employee ID)',
+    '50d1': 'OpenRoaming Unsettled Legacy (Enterprise Employee real ID)',
+    '5050': 'OpenRoaming Unsettled Legacy (Enterprise Customer ID)',
+    '50e2': 'OpenRoaming Unsettled Legacy (Enterprise Customer real ID)',
+    '5053': 'OpenRoaming Unsettled Legacy (Loyalty Retail ID)',
+    '50f0': 'OpenRoaming Unsettled Legacy (Loyalty Retail real ID)',
+    '5054': 'OpenRoaming Unsettled Legacy (Loyalty Hospitality ID)',
+    '562b': 'OpenRoaming Unsettled Legacy (Loyalty Hospitality real ID)',
+    '5073': 'OpenRoaming Unsettled Legacy (SP free Bronze QoS)',
+    '57d2': 'OpenRoaming Unsettled Legacy (SP free Bronze QoS Real ID)',
+    'baa2d': 'OpenRoaming Settled',
+    'baa2d00100': 'OpenRoaming Settled (SP paid Bronze QoS)',
+    'baa2d01100': 'OpenRoaming Settled (SP paid Bronze QoS real ID)',
+    'baa2d02100': 'OpenRoaming Settled (SP paid Silver QoS)',
+    'baa2d03100': 'OpenRoaming Settled (SP paid Silver QoS real ID)',
+    'baa2d04100': 'OpenRoaming Settled (SP paid Gold QoS)',
+    'baa2d05100': 'OpenRoaming Settled (SP paid Gold QoS real ID)',
+    'baa2d00500': 'OpenRoaming Settled (Automotive Paid)',
+    '5a03ba0000': 'OpenRoaming Unsettled (All)',
+    '5a03ba1000': 'OpenRoaming Unsettled (All with real ID)',
+    '5a03ba0a00': 'OpenRoaming Unsettled (Device Manufacturer)',
+    '5a03ba1a00': 'OpenRoaming Unsettled (Device Manufacturer real ID)',
+    '5a03ba0200': 'OpenRoaming Unsettled (Cloud ID)',
+    '5a03ba1200': 'OpenRoaming Unsettled (Cloud ID real ID)',
+    '5a03ba0300': 'OpenRoaming Unsettled (Enterprise ID)',
+    '5a03ba1300': 'OpenRoaming Unsettled (Enterprise ID real ID)',
+    '5a03ba0b00': 'OpenRoaming Unsettled (Loyalty Retail)',
+    '5a03ba1b00': 'OpenRoaming Unsettled (Loyalty Retail real ID)',
+    '5a03ba0600': 'OpenRoaming Unsettled (Loyalty Hospitality)',
+    '5a03ba1600': 'OpenRoaming Unsettled (Loyalty Hospitality real ID)',
+    '5a03ba0100': 'OpenRoaming Unsettled (SP free Bronze QoS)',
+    '5a03ba1100': 'OpenRoaming Unsettled (SP free Bronze QoS Real ID)',
+    '5a03ba0400': 'OpenRoaming Unsettled (Government ID free)',
+    '5a03ba0500': 'OpenRoaming Unsettled (Automotive ID free)',
+    '5a03ba0800': 'OpenRoaming Unsettled (Education or Research ID free)',
+    '5a03ba0900': 'OpenRoaming Unsettled (Cable ID free)',
     'f4f5e8f5f4': 'Google Orion Devices',
     'aa146b0000': 'IronWiFi Devices',
     '3af521': 'SingleDigits Testing RCOI',
     '1bc50460': 'Eduroam Legacy',
     '310280': 'ATT Offload ?',
     '310410': 'ATT Offload ?',
-    '313100': 'ATT Offload ?'
+    '313100': 'ATT Offload ?',
+    'f4f5e8f5d4': 'Alternative Orion Offload?',
+    'f4f5e8f5e4': 'Alternative Orion Offload?',
 }
 
 # Calculate most common SSIDs
@@ -192,12 +193,23 @@ ssids_table = """
 for ssid, count in common_ssids.items():
     ssids_table += f"| {ssid} | {count} |\n"
 
+# Function to determine definition
+def get_definition(rcoi):
+    # Normalize the RCOI by removing leading zeros and converting to lowercase
+    normalized_rcoi = rcoi.lower()
+    # Attempt to match the normalized RCOI
+    definition = rcoi_definitions.get(normalized_rcoi)
+    # Default to "Unknown" if no definition is found
+    return definition if definition else "Unknown"
+
 # Create markdown table for unique RCOIs and their definitions with counts
 rcoi_table = "### Unique RCOIs\n| RCOI | Definition | Count |\n|------|------------|-------|\n"
-for rcoi in unique_rcois:
-    definition = rcoi_definitions.get(rcoi, "Unknown")
-    count = rcoi_counts.get(rcoi, 0)
+for rcoi, count in rcoi_counts.items():
+    definition = get_definition(rcoi)
     rcoi_table += f"| {rcoi} | {definition} | {count} |\n"
+
+# Output the result
+print(rcoi_table)
 
 # Read the README file
 with open(readme_path, 'r') as f:
