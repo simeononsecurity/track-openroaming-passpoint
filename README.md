@@ -50,7 +50,7 @@ The stats are dynamic, we only pull year to date stats. But ultimately we'll upd
 | 112233 | Unknown | 1 |
 | 1122330000 | Unknown | 16 |
 | 1834af | Unknown | 241 |
-| 1bc50460 | Unknown | 614 |
+| 1bc50460 | Eduroam Legacy | 614 |
 | 1bc5046f | Unknown | 28 |
 | 1bc504bd | Unknown | 48 |
 | 21122 | Unknown | 1153 |
@@ -63,26 +63,26 @@ The stats are dynamic, we only pull year to date stats. But ultimately we'll upd
 | 3af050201 | Unknown | 11 |
 | 3af521 | SingleDigits Testing RCOI | 962 |
 | 40202 | Unknown | 2 |
-| 4096 | OpenRoaming Unsettled | 6632 |
+| 4096 | Unknown | 6632 |
 | 445566 | Unknown | 1 |
-| 500b | OpenRoaming Unsettled | 13 |
-| 500f | OpenRoaming Settled | 97 |
+| 500b | Unknown | 13 |
+| 500f | Unknown | 97 |
 | 506f9a | Unknown | 48 |
-| 5a03ba | OpenRoaming Unsettled | 451 |
-| 5a03ba0000 | OpenRoaming Unsettled | 6688 |
-| 5a03ba0100 | OpenRoaming Unsettled | 4 |
-| 5a03ba0600 | OpenRoaming Unsettled | 2 |
-| 5a03ba0800 | OpenRoaming Unsettled | 6 |
-| 5a03ba1000 | OpenRoaming Unsettled | 28 |
+| 5a03ba | Unknown | 451 |
+| 5a03ba0000 | Unknown | 6688 |
+| 5a03ba0100 | Unknown | 4 |
+| 5a03ba0600 | Unknown | 2 |
+| 5a03ba0800 | Unknown | 6 |
+| 5a03ba1000 | Unknown | 28 |
 | 6a1f6c | Unknown | 520 |
 | 840112 | Unknown | 1 |
 | a43 | Unknown | 1 |
 | aa146b | Unknown | 27 |
 | aa146b0000 | IronWiFi Devices | 161 |
-| baa2d0 | OpenRoaming Settled | 97 |
-| baa2d00000 | OpenRoaming Settled | 277 |
-| baa2d00100 | OpenRoaming Settled | 37 |
-| baa2d06000 | OpenRoaming Settled | 2 |
+| baa2d0 | Unknown | 97 |
+| baa2d00000 | Unknown | 277 |
+| baa2d00100 | Unknown | 37 |
+| baa2d06000 | Unknown | 2 |
 | c | Unknown | 25 |
 | cae505 | Unknown | 3944 |
 | da9d490000 | Unknown | 1 |
