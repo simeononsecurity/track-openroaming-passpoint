@@ -227,3 +227,55 @@ if '<!-- STATS START -->' in readme_content and '<!-- STATS END -->' in readme_c
     print("README.md has been updated with new statistics.")
 else:
     print("Error: Markers <!-- STATS START --> and <!-- STATS END --> not found in README.md.")
+
+# Create DataFrame for category counts
+categories_df = pd.DataFrame({
+    'Statistic': ['Total Hotspot 2.0 APs', 'OpenRoaming Unsettled', 'OpenRoaming Settled', 
+                  'EDUROAM Devices', 'Google Orion Devices', 'IronWiFi Devices', 
+                  'XNET Devices', 'Helium Devices', 'Wayru Devices', 
+                  'MetaBlox Devices', 'CityRoam Devices', 'Other Devices'],
+    'Count': [total_hotspots, openroaming_unsettled, openroaming_settled, 
+              eduroam_devices, google_orion_devices, ironwifi_devices, 
+              xnet_devices, helium_devices, wayru_devices, 
+              metablox_devices, cityroam_devices, other_devices],
+    'Description': ['Total count of all Hotspot 2.0 access points', 
+                    'Count of devices with RCOI matching any OpenRoaming unsettled RCOI', 
+                    'Count of devices with RCOI matching any OpenRoaming settled RCOI', 
+                    'Count of devices with RCOI containing either "5A03BA0800" or "1BC50460" or with an SSID matching "eduroam"', 
+                    'Count of devices with RCOI containing "f4f5e8f5f4"', 
+                    'Count of devices with RCOI containing "aa146b0000"', 
+                    'Count of devices with SSID containing "XNET"', 
+                    'Count of devices with SSID containing "Helium Mobile"', 
+                    'Count of devices with SSID containing "Wayru"', 
+                    'Count of devices with SSID containing "MetaBlox"', 
+                    'Count of devices with SSID containing "cityroam"', 
+                    'Count of devices that do not match any of the above categories']
+})
+
+# Save the category counts as a CSV file
+categories_csv_path = os.path.join(data_path, 'categories_counts.csv')
+categories_df.to_csv(categories_csv_path, index=False)
+print(f"Category counts saved to {categories_csv_path}")
+
+# Create DataFrame for RCOI counts with definitions
+rcoi_counts_df = pd.DataFrame({
+    'RCOI': rcoi_counts.index,
+    'Definition': [get_definition(rcoi) for rcoi in rcoi_counts.index],
+    'Count': rcoi_counts.values
+})
+
+# Save the RCOI counts with definitions as a CSV file
+rcoi_counts_csv_path = os.path.join(data_path, 'rcoi_counts.csv')
+rcoi_counts_df.to_csv(rcoi_counts_csv_path, index=False)
+print(f"RCOI counts with definitions saved to {rcoi_counts_csv_path}")
+
+# Create DataFrame for most common SSIDs
+common_ssids_df = pd.DataFrame({
+    'SSID': common_ssids.index,
+    'Count': common_ssids.values
+})
+
+# Save the most common SSIDs as a CSV file
+common_ssids_csv_path = os.path.join(data_path, 'common_ssids.csv')
+common_ssids_df.to_csv(common_ssids_csv_path, index=False)
+print(f"Most common SSIDs saved to {common_ssids_csv_path}")
