@@ -16,80 +16,85 @@ The stats are dynamic, we only pull year to date stats. But ultimately we'll upd
 ### OpenRoaming and Hotspot 2.0 Stats Table
 | Statistic | Count | Description |
 |-----------|-------|-------------|
-| Total Hotspot 2.0 APs | 23457 | Total count of all Hotspot 2.0 access points |
-| OpenRoaming Unsettled | 6826 | Count of devices with RCOI matching any OpenRoaming unsettled RCOI |
-| OpenRoaming Settled | 292 | Count of devices with RCOI matching any OpenRoaming settled RCOI |
-| EDUROAM Devices | 628 | Count of devices with RCOI containing either '5A03BA0800' or '1BC50460' or with an SSID matching "eduroam" |
-| Google Orion Devices | 10405 | Count of devices with RCOI containing 'f4f5e8f5f4' |
-| IronWiFi Devices | 161 | Count of devices with RCOI containing 'aa146b0000' |
-| XNET Devices | 231 | Count of devices with SSID containing 'XNET' |
-| Helium Devices | 15 | Count of devices with SSID containing 'Helium Mobile' |
+| Total Hotspot 2.0 APs | 26240 | Total count of all Hotspot 2.0 access points |
+| OpenRoaming Unsettled | 7001 | Count of devices with RCOI matching any OpenRoaming unsettled RCOI |
+| OpenRoaming Settled | 299 | Count of devices with RCOI matching any OpenRoaming settled RCOI |
+| EDUROAM Devices | 629 | Count of devices with RCOI containing either '5A03BA0800' or '1BC50460' or with an SSID matching "eduroam" |
+| Google Orion Devices | 11742 | Count of devices with RCOI containing 'f4f5e8f5f4' |
+| IronWiFi Devices | 165 | Count of devices with RCOI containing 'aa146b0000' |
+| XNET Devices | 237 | Count of devices with SSID containing 'XNET' |
+| Helium Devices | 16 | Count of devices with SSID containing 'Helium Mobile' |
 | Wayru Devices | 0 | Count of devices with SSID containing 'Wayru' |
-| MetaBlox Devices | 7 | Count of devices with SSID containing 'MetaBlox' |
-| CityRoam Devices | 904 | Count of devices with SSID containing 'cityroam' |
-| Other Devices | 11005 | Count of devices that do not match any of the above categories |
+| MetaBlox Devices | 8 | Count of devices with SSID containing 'MetaBlox' |
+| CityRoam Devices | 911 | Count of devices with SSID containing 'cityroam' |
+| Other Devices | 12419 | Count of devices that do not match any of the above categories |
 
 
 ### Most Common RCOI Enabled SSIDs
 | SSID | Count |
 |------|-------|
-| BoldynPasspoint | 3517 |
-| Cellular Wi-Fi Passthrough | 2098 |
-| LiveBetter | 1936 |
-| .p | 1683 |
+| BoldynPasspoint | 3580 |
+| LiveBetter | 3034 |
+| Cellular Wi-Fi Passthrough | 2110 |
+| Xfinity Mobile | 2003 |
+| .p | 1692 |
 | adco | 1067 |
-| Xfinity Mobile | 1063 |
-| GPGMS_CarrierOffloading | 954 |
-| Passpoint WiFi | 945 |
-| cityroam | 902 |
-| Orion | 891 |
+| Passpoint WiFi | 972 |
+| GPGMS_CarrierOffloading | 958 |
+| Orion | 923 |
+| cityroam | 909 |
 
 ### Unique RCOIs
 | RCOI | Definition | Count |
 |------|------------|-------|
-| f4f5e8f5f4 | Google Orion Devices | 10405 |
-| 5a03ba0000 | OpenRoaming Unsettled (All) | 6688 |
-| 4096 | OpenRoaming Unsettled Legacy / Samsung OneUI (All) | 6632 |
-| cae505 | Unknown | 3944 |
-| 313100 | ATT Offload ? | 3839 |
-| 310410 | ATT Offload ? | 3839 |
-| 310280 | ATT Offload ? | 3817 |
-| 2233445566 | Unknown | 1294 |
-| 21122 | Unknown | 1153 |
-| 3af521 | SingleDigits Testing RCOI | 962 |
+| f4f5e8f5f4 | Google Orion Devices | 11742 |
+| 5a03ba0000 | OpenRoaming Unsettled (All) | 6814 |
+| 4096 | OpenRoaming Unsettled Legacy / Samsung OneUI (All) | 6802 |
+| cae505 | Unknown | 4008 |
+| 310410 | ATT Offload ? | 3895 |
+| 313100 | ATT Offload ? | 3895 |
+| 310280 | ATT Offload ? | 3873 |
+| 2233445566 | Unknown | 1314 |
+| 21122 | Unknown | 1220 |
+| 3af521 | SingleDigits Testing RCOI | 989 |
+| f4f5e8f5c4 | Unknown | 920 |
 | 1bc50460 | Eduroam Legacy | 614 |
-| 6a1f6c | Unknown | 520 |
+| 6a1f6c | Unknown | 533 |
 | 5a03ba | Unknown | 451 |
-| baa2d00000 | Unknown | 277 |
-| 1834af | Unknown | 241 |
-| aa146b0000 | IronWiFi Devices | 161 |
-| baa2d0 | Unknown | 97 |
+| 1834af | Unknown | 290 |
+| baa2d00000 | Unknown | 283 |
+| aa146b0000 | IronWiFi Devices | 165 |
+| c6f9c | Unknown | 134 |
+| baa2d0 | Unknown | 99 |
 | 500f | OpenRoaming Settled Legacy (All paid members) | 97 |
-| 506f9a | Unknown | 48 |
-| 1bc504bd | Unknown | 48 |
+| 8c1f6467b4 | Unknown | 54 |
+| 1bc504bd | Unknown | 50 |
+| 506f9a | Unknown | 50 |
 | 3213445172 | Unknown | 44 |
-| baa2d00100 | OpenRoaming Settled (SP paid Bronze QoS) | 37 |
+| baa2d00100 | OpenRoaming Settled (SP paid Bronze QoS) | 39 |
+| 24e4ce | Unknown | 29 |
+| 5a03ba1000 | OpenRoaming Unsettled (All with real ID) | 29 |
 | 1bc5046f | Unknown | 28 |
-| 5a03ba1000 | OpenRoaming Unsettled (All with real ID) | 28 |
 | aa146b | Unknown | 27 |
 | c | Unknown | 25 |
-| 1122330000 | Unknown | 16 |
+| 1122330000 | Unknown | 18 |
 | 500b | OpenRoaming Unsettled Legacy (All with real ID) | 13 |
 | 3af050201 | Unknown | 11 |
-| 24e4ce | Unknown | 7 |
-| 5a03ba0800 | OpenRoaming Unsettled (Education or Research ID free) | 6 |
+| 5a03ba0800 | OpenRoaming Unsettled (Education or Research ID free) | 7 |
 | 5a03ba0100 | OpenRoaming Unsettled (SP free Bronze QoS) | 4 |
-| 40202 | Unknown | 2 |
+| 743aef | Unknown | 2 |
 | 5a03ba0600 | OpenRoaming Unsettled (Loyalty Hospitality) | 2 |
+| 40202 | Unknown | 2 |
+| 840112 | Unknown | 2 |
 | baa2d06000 | Unknown | 2 |
-| 840112 | Unknown | 1 |
+| 583039 | Unknown | 2 |
 | da9d490000 | Unknown | 1 |
+| 112233 | Unknown | 1 |
+| 445566 | Unknown | 1 |
 | f4f5e8f5d4 | Alternative Orion Offload? | 1 |
 | f4f5e8f5e4 | Alternative Orion Offload? | 1 |
 | a43 | Unknown | 1 |
 | da9d490005 | Unknown | 1 |
-| 112233 | Unknown | 1 |
-| 445566 | Unknown | 1 |
 
 <!-- STATS END -->
 
