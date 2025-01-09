@@ -22,7 +22,7 @@ if not api_name or not api_token or not auth_header:
 base_url = "https://api.wigle.net/api/v2/network/search"
 params = {
     "onlymine": "false",
-    "startTransID": "20240101-00000",
+    "startTransID": "20250101-00000",
     "freenet": "false",
     "paynet": "false",
     "rcoisMinimum": "4096",
