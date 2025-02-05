@@ -1,4 +1,4 @@
-﻿basemap==1.3.9
+﻿basemap==1.4.1
 basemap-data==1.3.2
 branca==0.7.2
 certifi==2024.2.2
