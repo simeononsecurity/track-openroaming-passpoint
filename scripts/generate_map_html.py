@@ -44,8 +44,8 @@ categories = {
     "Helium Devices": data_filtered['ssid'].str.contains('Helium Mobile', na=False, case=False),
     "Wayru Devices": data_filtered['ssid'].str.contains('Wayru', na=False, case=False),
     "MetaBlox Devices": data_filtered['ssid'].str.contains('MetaBlox', na=False, case=False),
-    "EDUROAM Devices": data_filtered['rcois'].str.contains('5a03ba0800|1bc50460', na=False) | data_filtered['ssid'].str.contains('eduroam®|eduroam', na=False, case=False),
-    "CityRoam Devices": data_filtered['ssid'].str.contains('cityroam', na=False, case=False)
+    "eduroam Devices": data_filtered['rcois'].str.contains('5a03ba0800|1bc50460', na=False) | data_filtered['ssid'].str.contains('eduroam®|eduroam', na=False, case=False),
+    "Cityroam Devices": data_filtered['ssid'].str.contains('cityroam', na=False, case=False)
 }
 
 # Add the "Other" category
