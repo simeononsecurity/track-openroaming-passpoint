@@ -95,8 +95,8 @@ print("XNET Devices:", xnet_devices)
 print("Helium Devices:", helium_devices)
 print("Wayru Devices:", wayru_devices)
 print("MetaBlox Devices:", metablox_devices)
-print("EDUROAM Devices:", eduroam_devices)
-print("CityRoam Devices:", cityroam_devices)
+print("eduroam Devices:", eduroam_devices)
+print("Cityroam Devices:", cityroam_devices)
 print("Other Devices:", other_devices)
 
 # Calculate counts for each unique RCOI
@@ -173,14 +173,14 @@ stats_table = f"""
 | Total Hotspot 2.0 APs | {total_hotspots} | Total count of all Hotspot 2.0 access points |
 | OpenRoaming Unsettled | {openroaming_unsettled} | Count of devices with RCOI matching any OpenRoaming unsettled RCOI |
 | OpenRoaming Settled | {openroaming_settled} | Count of devices with RCOI matching any OpenRoaming settled RCOI |
-| EDUROAM Devices | {eduroam_devices} | Count of devices with RCOI containing either '5A03BA0800' or '1BC50460' or with an SSID matching "eduroam" |
+| eduroam Devices | {eduroam_devices} | Count of devices with RCOI containing either '5A03BA0800' or '1BC50460' or with an SSID matching "eduroam" |
 | Google Orion Devices | {google_orion_devices} | Count of devices with RCOI containing 'f4f5e8f5f4' |
 | IronWiFi Devices | {ironwifi_devices} | Count of devices with RCOI containing 'aa146b0000' |
 | XNET Devices | {xnet_devices} | Count of devices with SSID containing 'XNET' |
 | Helium Devices | {helium_devices} | Count of devices with SSID containing 'Helium Mobile' |
 | Wayru Devices | {wayru_devices} | Count of devices with SSID containing 'Wayru' |
 | MetaBlox Devices | {metablox_devices} | Count of devices with SSID containing 'MetaBlox' |
-| CityRoam Devices | {cityroam_devices} | Count of devices with SSID containing 'cityroam' |
+| Cityroam Devices | {cityroam_devices} | Count of devices with SSID containing 'cityroam' |
 | Other Devices | {other_devices} | Count of devices that do not match any of the above categories |
 """
 
@@ -231,9 +231,9 @@ else:
 # Create DataFrame for category counts
 categories_df = pd.DataFrame({
     'Statistic': ['Total Hotspot 2.0 APs', 'OpenRoaming Unsettled', 'OpenRoaming Settled', 
-                  'EDUROAM Devices', 'Google Orion Devices', 'IronWiFi Devices', 
+                  'eduroam Devices', 'Google Orion Devices', 'IronWiFi Devices', 
                   'XNET Devices', 'Helium Devices', 'Wayru Devices', 
-                  'MetaBlox Devices', 'CityRoam Devices', 'Other Devices'],
+                  'MetaBlox Devices', 'Cityroam Devices', 'Other Devices'],
     'Count': [total_hotspots, openroaming_unsettled, openroaming_settled, 
               eduroam_devices, google_orion_devices, ironwifi_devices, 
               xnet_devices, helium_devices, wayru_devices, 
