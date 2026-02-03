@@ -25,7 +25,7 @@
             <meta name="viewport" content="width=device-width,
                 initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
             <style>
-                #map_65e194a041e47037d68cb95d03a831dc {
+                #map_310d80a89628c6151664952d2c2c5969 {
                     position: relative;
                     width: 100.0%;
                     height: 100.0%;
@@ -127,7 +127,7 @@
         var filteredMarkers = [];
         var selectedCategories = Array.from(document.querySelectorAll('.category-checkbox:checked')).map(cb => cb.value);
 
-        marker_cluster_ff86571a17aa0918ed1e75d08a61f103.clearLayers();
+        marker_cluster_fb07b0e10915c38c4dff4e5ef3f3eeac.clearLayers();
         
         markers.forEach(function(marker_obj) {
             var match = selectedCategories.some(function(category) {
@@ -136,7 +136,7 @@
             
             if (match) {
                 var marker = L.marker(marker_obj.latlng).bindPopup(marker_obj.popup);
-                marker.addTo(marker_cluster_ff86571a17aa0918ed1e75d08a61f103);
+                marker.addTo(marker_cluster_fb07b0e10915c38c4dff4e5ef3f3eeac);
                 filteredMarkers.push(marker_obj);
             }
         });
@@ -156,7 +156,7 @@
         var rcoiRegex = new RegExp(rcoiSearch, regexFlags);
 
         var matchedMarkers = [];
-        marker_cluster_ff86571a17aa0918ed1e75d08a61f103.clearLayers();
+        marker_cluster_fb07b0e10915c38c4dff4e5ef3f3eeac.clearLayers();
 
         markers.forEach(function(marker_obj) {
             var ssidMatch = useRegex ? ssidRegex.test(marker_obj.ssid) : marker_obj.ssid.toLowerCase().includes(ssidSearch.toLowerCase());
@@ -164,7 +164,7 @@
 
             if (ssidMatch && rcoiMatch) {
                 var marker = L.marker(marker_obj.latlng).bindPopup(marker_obj.popup);
-                marker.addTo(marker_cluster_ff86571a17aa0918ed1e75d08a61f103);
+                marker.addTo(marker_cluster_fb07b0e10915c38c4dff4e5ef3f3eeac);
                 matchedMarkers.push(marker_obj);
             }
         });
@@ -186,14 +186,14 @@
     });
 </script>
     
-            <div class="folium-map" id="map_65e194a041e47037d68cb95d03a831dc" ></div>
+            <div class="folium-map" id="map_310d80a89628c6151664952d2c2c5969" ></div>
         
 </body>
 <script>
     
     
-            var map_65e194a041e47037d68cb95d03a831dc = L.map(
-                "map_65e194a041e47037d68cb95d03a831dc",
+            var map_310d80a89628c6151664952d2c2c5969 = L.map(
+                "map_310d80a89628c6151664952d2c2c5969",
                 {
                     center: [37.0902, -95.7129],
                     crs: L.CRS.EPSG3857,
@@ -207,21 +207,21 @@
 
         
     
-            var tile_layer_00b6a5bb38f70351ded74b464e249852 = L.tileLayer(
+            var tile_layer_650a16866567fd8f925b5d609d035a9f = L.tileLayer(
                 "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
                 {"attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors", "detectRetina": false, "maxNativeZoom": 19, "maxZoom": 19, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
             );
         
     
-            tile_layer_00b6a5bb38f70351ded74b464e249852.addTo(map_65e194a041e47037d68cb95d03a831dc);
+            tile_layer_650a16866567fd8f925b5d609d035a9f.addTo(map_310d80a89628c6151664952d2c2c5969);
         
     
-            var marker_cluster_ff86571a17aa0918ed1e75d08a61f103 = L.markerClusterGroup(
+            var marker_cluster_fb07b0e10915c38c4dff4e5ef3f3eeac = L.markerClusterGroup(
                 {}
             );
         
     
-            marker_cluster_ff86571a17aa0918ed1e75d08a61f103.addTo(map_65e194a041e47037d68cb95d03a831dc);
+            marker_cluster_fb07b0e10915c38c4dff4e5ef3f3eeac.addTo(map_310d80a89628c6151664952d2c2c5969);
         
 </script>
 </html>
