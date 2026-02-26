@@ -68,8 +68,8 @@ The stats are dynamic, we only pull year to date stats. But ultimately we'll upd
 | baa2d0 | Unknown | 99 |
 | 500f | OpenRoaming Settled Legacy (All paid members) | 97 |
 | 8c1f6467b4 | Unknown | 54 |
-| 1bc504bd | Unknown | 50 |
 | 506f9a | Unknown | 50 |
+| 1bc504bd | Unknown | 50 |
 | 3213445172 | Unknown | 44 |
 | baa2d00100 | OpenRoaming Settled (SP paid Bronze QoS) | 39 |
 | 24e4ce | Unknown | 29 |
@@ -82,19 +82,19 @@ The stats are dynamic, we only pull year to date stats. But ultimately we'll upd
 | 3af050201 | Unknown | 11 |
 | 5a03ba0800 | OpenRoaming Unsettled (Education or Research ID free) | 7 |
 | 5a03ba0100 | OpenRoaming Unsettled (SP free Bronze QoS) | 4 |
-| 583039 | Unknown | 2 |
-| 743aef | Unknown | 2 |
-| baa2d06000 | Unknown | 2 |
-| 840112 | Unknown | 2 |
 | 40202 | Unknown | 2 |
+| 743aef | Unknown | 2 |
+| 583039 | Unknown | 2 |
 | 5a03ba0600 | OpenRoaming Unsettled (Loyalty Hospitality) | 2 |
-| 445566 | Unknown | 1 |
-| da9d490000 | Unknown | 1 |
-| 112233 | Unknown | 1 |
+| 840112 | Unknown | 2 |
+| baa2d06000 | Unknown | 2 |
 | f4f5e8f5d4 | Alternative Orion Offload? | 1 |
 | f4f5e8f5e4 | Alternative Orion Offload? | 1 |
 | a43 | Unknown | 1 |
 | da9d490005 | Unknown | 1 |
+| da9d490000 | Unknown | 1 |
+| 445566 | Unknown | 1 |
+| 112233 | Unknown | 1 |
 | 5745 | Unknown | 1 |
 
 <!-- STATS END -->
