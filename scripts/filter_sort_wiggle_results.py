@@ -13,7 +13,7 @@ output_path = os.path.join(current_path, 'output')
 csv_path = os.path.join(data_path, 'wigle_results.csv')
 
 # Read the CSV file into a DataFrame
-df = pd.read_csv(csv_path)
+df = pd.read_csv(csv_path, on_bad_lines='warn')
 
 # Convert time columns to datetime for comparison
 df['firsttime'] = pd.to_datetime(df['firsttime'])
@@ -27,18 +27,21 @@ df = df.sort_values(by=['trilat', 'trilong', 'ssid', 'netid', 'lastupdt'], ascen
 df_unique = df.drop_duplicates(subset=['trilat', 'trilong', 'ssid', 'netid'], keep='first')
 
 # Filter out rows with duplicate SSIDs or MAC addresses but keep them if other columns differ
-# Create a new DataFrame to store filtered results
-filtered_df = pd.DataFrame()
+# Create a list to collect filtered groups
+filtered_chunks = []
 
 # Group by SSID and MAC address and apply filtering
 for _, group in df_unique.groupby(['ssid', 'netid']):
     if group.duplicated(subset=['trilat', 'trilong']).any():
         # If duplicates are found based on geocoordinates, keep the latest entry
-        latest_entry = group.sort_values(by='lastupdt', ascending=False).iloc[0]
-        filtered_df = filtered_df._append(latest_entry)
+        latest_entry = group.sort_values(by='lastupdt', ascending=False).iloc[[0]]
+        filtered_chunks.append(latest_entry)
     else:
         # If no duplicates based on geocoordinates, keep all entries
-        filtered_df = filtered_df._append(group)
+        filtered_chunks.append(group)
+
+# Concatenate all filtered chunks into a single DataFrame
+filtered_df = pd.concat(filtered_chunks, ignore_index=True) if filtered_chunks else pd.DataFrame(columns=df_unique.columns)
 
 # Reset the index for the final DataFrame
 filtered_df.reset_index(drop=True, inplace=True)

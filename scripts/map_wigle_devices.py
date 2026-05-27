@@ -67,7 +67,7 @@ def save_last_page(search_after_value):
 def append_to_csv(data, csv_file):
     file_exists = os.path.isfile(csv_file)
     with open(csv_file, mode='a', newline='', encoding='utf-8') as f:
-        writer = csv.writer(f)
+        writer = csv.writer(f, quoting=csv.QUOTE_ALL)
         if not file_exists:
             # Write header if the file does not exist
             writer.writerow(data[0].keys())

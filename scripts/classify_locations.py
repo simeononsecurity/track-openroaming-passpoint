@@ -16,7 +16,7 @@ csv_file = os.path.join(data_path, 'wigle_results.csv')
 output_file = os.path.join(data_path, 'classified_wigle_results.csv')
 
 # Read the CSV file into a DataFrame
-df = pd.read_csv(csv_file)
+df = pd.read_csv(csv_file, on_bad_lines='warn')
 
 # Convert SSID column to string and handle NaN values
 df['ssid'] = df['ssid'].astype(str).fillna('')

@@ -10,4 +10,4 @@ Helium Devices,16,"Count of devices with SSID containing ""Helium Mobile"""
 Wayru Devices,0,"Count of devices with SSID containing ""Wayru"""
 MetaBlox Devices,8,"Count of devices with SSID containing ""MetaBlox"""
 Cityroam Devices,911,"Count of devices with SSID containing ""cityroam"""
-Other Devices,12420,Count of devices that do not match any of the above categories
+Other Devices,23984,Count of devices that do not match any of the above categories

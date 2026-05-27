@@ -20,7 +20,7 @@ os.makedirs(archive_path, exist_ok=True)
 csv_path = os.path.join(data_path, 'wigle_results.csv')
 
 # Read the CSV file into a DataFrame
-df = pd.read_csv(csv_path)
+df = pd.read_csv(csv_path, on_bad_lines='warn')
 
 # Get the current year
 current_year = datetime.now().year

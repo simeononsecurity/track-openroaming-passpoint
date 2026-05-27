@@ -10,7 +10,7 @@ readme_path = os.path.join(current_path, 'README.md')
 csv_file = os.path.join(data_path, 'wigle_results.csv')
 
 # Read the CSV file into a DataFrame
-df = pd.read_csv(csv_file)
+df = pd.read_csv(csv_file, on_bad_lines='warn')
 # Convert rcois column to lowercase
 df['rcois'] = df['rcois'].str.lower()
 
