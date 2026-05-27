@@ -19,7 +19,8 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.12.x'
+          python-version: '3.13.x'
+          cache: 'pip'
 
       - name: Install Dependencies
         run: |
@@ -58,8 +59,7 @@ jobs:
           git commit -m "Update Statistics and HTML files"
 
       - name: Push changes
-        uses: ad-m/github-push-action@master
+        uses: ad-m/github-push-action@v0.8.0
         with:
           github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
           branch: ${{ github.ref }}
-
