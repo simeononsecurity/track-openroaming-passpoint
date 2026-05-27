@@ -22,13 +22,15 @@ csv_path = os.path.join(data_path, 'wigle_results.csv')
 # Read the CSV file into a DataFrame
 df = pd.read_csv(csv_path, on_bad_lines='warn')
 
-# Get the current year
+# Get the current year (used only for archive naming)
 current_year = datetime.now().year
 
-# Filter data to include only entries from the current year
+# Parse datetime columns
 df['firsttime'] = pd.to_datetime(df['firsttime'])
 df['lasttime'] = pd.to_datetime(df['lasttime'])
-df_filtered = df[df['firsttime'].dt.year == current_year]
+
+# Use all available data (all years) so the map is never empty
+df_filtered = df
 
 # Initialize the map
 plt.figure(figsize=(20, 10))
